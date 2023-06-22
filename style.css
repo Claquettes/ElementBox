@@ -1,0 +1,10 @@
+canvas {
+    position: absolute;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
