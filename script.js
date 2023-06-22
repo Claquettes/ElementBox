@@ -75,9 +75,64 @@ function handleMouseMove(event) {
 function applyGravity() {
   for (let i = numRows - 2; i >= 0; i--) {
     for (let j = 0; j < numCols; j++) {
+        //we check if the tile below is empty and the current tile is not empty and not grey
       if (grid[i][j] !== '' && grid[i + 1][j] === '' && grid[i][j] !== 'grey') {
         grid[i + 1][j] = grid[i][j];
         grid[i][j] = '';
+      }
+      //if a blue tile is ON TOP of a BLUE tile
+      if(grid[i][j] === 'blue' && grid[i + 1][j] === 'blue'){
+        console.log('blue on blue');
+        //the tile on the top becomes empty
+        grid[i][j] = '';
+        //we check if the diagonal tiles are empty below
+        if(grid[i + 1][j + 1] === '' && grid[i + 1][j - 1] === ''){
+            //if they are empty, we put a blue tile on 50% right or left
+            if(Math.random() > 0.5){
+                grid[i + 1][j + 1] = 'blue';
+                console.log('blue on blue on blue right');
+            }else{
+                grid[i + 1][j - 1] = 'blue';
+                console.log('blue on blue on blue left');
+            }
+        }
+        else if(grid[i + 1][j + 1] === '' && grid[i + 1][j - 1] !== ''){
+            grid[i + 1][j + 1] = 'blue';
+            console.log('blue on blue on blue right 1');
+        }
+        else if(grid[i + 1][j + 1] !== '' && grid[i + 1][j - 1] === ''){
+            grid[i + 1][j - 1] = 'blue';
+            console.log('blue on blue on blue left 2');
+        }
+        //if the diagonal tiles are not empty, we check if the tile directly on the right is empty; and the left is empty
+        else if(grid[i][j + 1] === '' && grid[i][j - 1] === ''){
+            //if they are empty, we put a blue tile on 50% right or left
+            if(Math.random() > 0.5){
+                grid[i][j + 1] = 'blue';
+                console.log('blue on blue on blue right 3');
+            }else{
+                grid[i][j - 1] = 'blue';
+                console.log('blue on blue on blue left 4');
+            }
+        }
+        else if(grid[i][j + 1] === '' && grid[i][j - 1] !== ''){
+            grid[i][j + 1] = 'blue';
+            console.log('blue on blue on blue right 5');
+        }
+        else if(grid[i][j + 1] !== '' && grid[i][j - 1] === ''){
+            grid[i][j - 1] = 'blue';
+            console.log('blue on blue on blue left 6');
+        }
+        else{
+            grid[i][j] = 'blue';
+        }
+
+
+
+
+
+
+
       }
     }
   }
