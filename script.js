@@ -78,11 +78,11 @@ function handleMouseMove(event) {
 function applyGravity() {
   for (let i = numRows - 2; i >= 0; i--) {
     for (let j = 0; j < numCols; j++) {
-        //we check if the tile below is empty and the current tile is not empty and not grey
       if (grid[i][j] !== '' && grid[i + 1][j] === '' && grid[i][j] !== 'grey') {
         grid[i + 1][j] = grid[i][j];
         grid[i][j] = '';
       }
+<<<<<<< HEAD
       //if a water tile is ON TOP of a water tile
       if(grid[i][j] === 'water' && grid[i + 1][j] === 'water'){
         console.log('water on water');
@@ -137,6 +137,8 @@ function applyGravity() {
 
 
       }
+=======
+>>>>>>> parent of c19c969 (better water model : water will flow down and try as much as possible to be flat.)
     }
   }
 }
