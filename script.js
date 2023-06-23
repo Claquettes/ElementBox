@@ -6,7 +6,7 @@ const gridWidth = 500;
 const gridHeight = 500;
 const numCols = gridWidth / gridSize;
 const numRows = gridHeight / gridSize;
-const colors = ['red', 'green', 'water', 'grey']; // Added 'grey' color
+const colors = ['red', 'green', 'blue', 'grey']; // Added 'grey' color
 
 // Initialize grid
 const grid = [];
@@ -27,17 +27,15 @@ canvas.addEventListener('mousedown', handleMouseDown);
 canvas.addEventListener('mouseup', handleMouseUp);
 canvas.addEventListener('mousemove', handleMouseMove);
 
-//we define the colors
-const water = 'blue';
 
 const redButton = document.getElementById('redButton');
 const greenButton = document.getElementById('greenButton');
-const waterButton = document.getElementById('waterButton');
+const blueButton = document.getElementById('blueButton');
 const greyButton = document.getElementById('greyButton');
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
 greenButton.addEventListener('click', () => setCurrentColor('green'));
-waterButton.addEventListener('click', () => setCurrentColor(water));
+blueButton.addEventListener('click', () => setCurrentColor('blue'));
 greyButton.addEventListener('click', () => setCurrentColor('grey'));
 
 // Functions
@@ -82,52 +80,51 @@ function applyGravity() {
         grid[i + 1][j] = grid[i][j];
         grid[i][j] = '';
       }
-<<<<<<< HEAD
-      //if a water tile is ON TOP of a water tile
-      if(grid[i][j] === 'water' && grid[i + 1][j] === 'water'){
-        console.log('water on water');
+      //if a blue tile is ON TOP of a blue tile
+      if(grid[i][j] === 'blue' && grid[i + 1][j] === 'blue'){
+        console.log('blue on blue');
         //the tile on the top becomes empty
         grid[i][j] = '';
         //we check if the diagonal tiles are empty below
         if(grid[i + 1][j + 1] === '' && grid[i + 1][j - 1] === ''){
-            //if they are empty, we put a water tile on 50% right or left
+            //if they are empty, we put a blue tile on 50% right or left
             if(Math.random() > 0.5){
-                grid[i + 1][j + 1] = 'water';
-                console.log('water on water on water right');
+                grid[i + 1][j + 1] = 'blue';
+                console.log('blue on blue on blue right');
             }else{
-                grid[i + 1][j - 1] = 'water';
-                console.log('water on water on water left');
+                grid[i + 1][j - 1] = 'blue';
+                console.log('blue on blue on blue left');
             }
         }
         else if(grid[i + 1][j + 1] === '' && grid[i + 1][j - 1] !== ''){
-            grid[i + 1][j + 1] = 'water';
-            console.log('water on water on water right 1');
+            grid[i + 1][j + 1] = 'blue';
+            console.log('blue on blue on blue right 1');
         }
         else if(grid[i + 1][j + 1] !== '' && grid[i + 1][j - 1] === ''){
-            grid[i + 1][j - 1] = 'water';
-            console.log('water on water on water left 2');
+            grid[i + 1][j - 1] = 'blue';
+            console.log('blue on blue on blue left 2');
         }
         //if the diagonal tiles are not empty, we check if the tile directly on the right is empty; and the left is empty
         else if(grid[i][j + 1] === '' && grid[i][j - 1] === ''){
-            //if they are empty, we put a water tile on 50% right or left
+            //if they are empty, we put a blue tile on 50% right or left
             if(Math.random() > 0.5){
-                grid[i][j + 1] = 'water';
-                console.log('water on water on water right 3');
+                grid[i][j + 1] = 'blue';
+                console.log('blue on blue on blue right 3');
             }else{
-                grid[i][j - 1] = 'water';
-                console.log('water on water on water left 4');
+                grid[i][j - 1] = 'blue';
+                console.log('blue on blue on blue left 4');
             }
         }
         else if(grid[i][j + 1] === '' && grid[i][j - 1] !== ''){
-            grid[i][j + 1] = 'water';
-            console.log('water on water on water right 5');
+            grid[i][j + 1] = 'blue';
+            console.log('blue on blue on blue right 5');
         }
         else if(grid[i][j + 1] !== '' && grid[i][j - 1] === ''){
-            grid[i][j - 1] = 'water';
-            console.log('water on water on water left 6');
+            grid[i][j - 1] = 'blue';
+            console.log('blue on blue on blue left 6');
         }
         else{
-            grid[i][j] = 'water';
+            grid[i][j] = 'blue';
         }
 
 
@@ -137,8 +134,6 @@ function applyGravity() {
 
 
       }
-=======
->>>>>>> parent of c19c969 (better water model : water will flow down and try as much as possible to be flat.)
     }
   }
 }
