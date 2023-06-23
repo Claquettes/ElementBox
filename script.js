@@ -1,9 +1,9 @@
 // Constants
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const gridSize = 5;
-const gridWidth = 500;
-const gridHeight = 500;
+const gridSize = 7;
+const gridWidth = 700;
+const gridHeight = 700;
 const numCols = gridWidth / gridSize;
 const numRows = gridHeight / gridSize;
 const colors = ['red', 'green', 'blue', 'grey']; // Added 'grey' color
@@ -26,7 +26,6 @@ let currentColor = 'red';
 canvas.addEventListener('mousedown', handleMouseDown);
 canvas.addEventListener('mouseup', handleMouseUp);
 canvas.addEventListener('mousemove', handleMouseMove);
-
 
 const redButton = document.getElementById('redButton');
 const greenButton = document.getElementById('greenButton');
@@ -76,11 +75,12 @@ function handleMouseMove(event) {
 function applyGravity() {
   for (let i = numRows - 2; i >= 0; i--) {
     for (let j = 0; j < numCols; j++) {
+        //we check if the tile below is empty and the current tile is not empty and not grey
       if (grid[i][j] !== '' && grid[i + 1][j] === '' && grid[i][j] !== 'grey') {
         grid[i + 1][j] = grid[i][j];
         grid[i][j] = '';
       }
-      //if a blue tile is ON TOP of a blue tile
+      //if a blue tile is ON TOP of a BLUE tile
       if(grid[i][j] === 'blue' && grid[i + 1][j] === 'blue'){
         console.log('blue on blue');
         //the tile on the top becomes empty
