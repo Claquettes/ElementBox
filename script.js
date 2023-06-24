@@ -6,7 +6,7 @@ const gridWidth = 700;
 const gridHeight = 700;
 const numCols = gridWidth / gridSize;
 const numRows = gridHeight / gridSize;
-const colors = ['red', 'green', 'water', 'grey']; // Added 'grey' color
+const colors = ['red', 'green', 'water', 'grey', 'sand']; // Added 'grey' color
 
 
 
@@ -34,11 +34,13 @@ const redButton = document.getElementById('redButton');
 const greenButton = document.getElementById('greenButton');
 const waterButton = document.getElementById('waterButton');
 const greyButton = document.getElementById('greyButton');
+const sandButton = document.getElementById('sandButton'); 
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
 greenButton.addEventListener('click', () => setCurrentColor('green'));
 waterButton.addEventListener('click', () => setCurrentColor('water'));
 greyButton.addEventListener('click', () => setCurrentColor('grey'));
+sandButton.addEventListener('click', () => setCurrentColor('sand'));
 
 // Functions
 function drawGrid() {
@@ -61,9 +63,11 @@ function drawGrid() {
           case 'grey':
             ctx.fillStyle = greyColor;
             break;
+          case 'sand':
+            ctx.fillStyle = sandColor;
+            break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
-
       }
     }
   }
@@ -144,13 +148,13 @@ function applyGravity() {
         else{
             grid[i][j] = 'water';
         }
-
-
-
-
-
-
-
+      }
+      //if a sand tile is ON TOP of a water tile
+      if(grid[i][j] === 'sand' && grid[i + 1][j] === 'water'){
+        //the tile on the top becomes water
+        grid[i][j] = 'water';
+        //the tile below becomes sand
+        grid[i + 1][j] = 'sand';
       }
     }
   }
