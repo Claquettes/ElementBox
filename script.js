@@ -35,12 +35,14 @@ const greenButton = document.getElementById('greenButton');
 const waterButton = document.getElementById('waterButton');
 const greyButton = document.getElementById('greyButton');
 const sandButton = document.getElementById('sandButton'); 
+const coalButton = document.getElementById('coalButton'); 
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
 greenButton.addEventListener('click', () => setCurrentColor('green'));
 waterButton.addEventListener('click', () => setCurrentColor('water'));
 greyButton.addEventListener('click', () => setCurrentColor('grey'));
 sandButton.addEventListener('click', () => setCurrentColor('sand'));
+coalButton.addEventListener('click', () => setCurrentColor('coal'));
 
 // Functions
 function drawGrid() {
@@ -66,6 +68,8 @@ function drawGrid() {
           case 'sand':
             ctx.fillStyle = sandColor;
             break;
+          case 'coal':
+            ctx.fillStyle = coalColor;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }
@@ -89,7 +93,10 @@ function handleMouseMove(event) {
     const col = Math.floor(x / gridSize);
     const row = Math.floor(y / gridSize);
     if (col >= 0 && col < numCols && row >= 0 && row < numRows) {
-      grid[row][col] = currentColor;
+      //we check if the tile is empty
+      if (grid[row][col] === '') {
+        grid[row][col] = currentColor;
+      }
     }
   }
 }
