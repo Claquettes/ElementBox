@@ -5,12 +5,14 @@ body {
   
 canvas{
     position: absolute;
-    top : 50%;
-    left : 50%;
-    transform: translate(-50%, -50%);
     display: block;
     margin: 20px auto;
     border: 1px solid black;
+    height: calc(50vh - 40px);
+    width: calc(50vh - 40px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
 }
 
 #colorButtons{
