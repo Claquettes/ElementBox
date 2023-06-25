@@ -75,6 +75,9 @@ function drawGrid() {
           case 'lava':
             ctx.fillStyle = lavaColor;
             break;
+          case 'stone':
+            ctx.fillStyle = stoneColor;
+            break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }
