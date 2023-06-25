@@ -28,7 +28,8 @@ canvas{
 #colorButtons{
     position: absolute;
     top: calc(50vh - 40px);
-    left: 50%;
+    left: 20%;
+
 
     display: block;
     margin: 20px auto;
