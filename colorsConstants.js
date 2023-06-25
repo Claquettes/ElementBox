@@ -8,3 +8,4 @@ const lavaColor = "#d67f1c";
 const stoneColor = "#808080";
 const freezePowderColor = "#aee6e3";
 const iceColor = "#cdebf7";
+const steamColor = "#7e888c";

@@ -37,6 +37,7 @@ const lavaButton = document.getElementById('lavaButton');
 const stoneButton = document.getElementById('stoneButton');
 const freezePowderButton = document.getElementById('freezePowderButton');
 const iceButton = document.getElementById('iceButton');
+const steamButton = document.getElementById('steamButton');
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
 greenButton.addEventListener('click', () => setCurrentColor('green'));
@@ -48,6 +49,7 @@ lavaButton.addEventListener('click', () => setCurrentColor('lava'));
 stoneButton.addEventListener('click', () => setCurrentColor('stone'));
 freezePowderButton.addEventListener('click', () => setCurrentColor('freezePowder'));
 iceButton.addEventListener('click', () => setCurrentColor('ice'));
+steamButton.addEventListener('click', () => setCurrentColor('steam'));
 
 // Functions
 function drawGrid() {
@@ -88,6 +90,9 @@ function drawGrid() {
           case 'ice':
             ctx.fillStyle = iceColor;
             break;
+          case 'steam':
+            ctx.fillStyle = steamColor;
+            break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }
@@ -122,7 +127,22 @@ function handleMouseMove(event) {
 function applyGravity() {
   for (let i = numRows - 2; i >= 0; i--) {
     for (let j = 0; j < numCols; j++) {
-        //we check if the tile below is empty and the current tile is not empty and not grey
+      //we start by checking collision for gases. 
+      if(grid[i][j] === 'steam'){
+        if(i - 1 >= 0){
+          //10% chance to go up
+          if(Math.random() > 0.667){
+            grid[i - 1][j] = 'steam';
+            grid[i][j] = '';
+          }
+        }
+        else{
+          grid[i][j] = '';
+        }
+        
+      }
+      else {
+          //we check if the tile below is empty and the current tile is not empty and not grey
       if (grid[i][j] !== '' && grid[i + 1][j] === '' && grid[i][j] !== 'grey') {
         grid[i + 1][j] = grid[i][j];
         grid[i][j] = '';
@@ -186,6 +206,8 @@ function applyGravity() {
         //any water tile adjacent to the lava tile becomes stone
         if(grid[i + 1][j] === 'water'){
             grid[i + 1][j] = 'stone';
+            //we generate steam on top of the lava
+            grid[i-1][j] = 'steam';
         }
         if(grid[i - 1][j] === 'water'){
             grid[i - 1][j] = 'stone';
@@ -220,8 +242,7 @@ function applyGravity() {
     }
   }
 }
-
-
+}
 const greyColorIndex = 3; // Index of 'grey' in the colors array
 
 function setCurrentColor(color) {
