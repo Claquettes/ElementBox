@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 
 const canvasSize = 1000;
 
-const gridSize = canvasSize / 100;
+const gridSize = canvasSize / 50;
 
 canvas.width = canvasSize;
 canvas.height = canvasSize;
@@ -114,7 +114,7 @@ function applyGravity() {
     for (let j = 0; j < numCols; j++) {
       //we start by checking collision for gases.
       if (grid[i][j] === "steam" && grid[i - 1][j] === "") {
-        if (i - 1 >= 0) {
+        if (i - 1 > 0) {
           //10% chance to go up
           if (Math.random() > 0.667) {
             grid[i - 1][j] = "steam";
@@ -200,7 +200,7 @@ function applyGravity() {
             grid[i][j - 1] = "stone";
           }
         }
-        //if the tile is freezePowder
+        //if the tile is freezePowder or ice
         if (grid[i][j] === "freezePowder" || grid[i][j] === "ice") {
           if (Math.random() > 0.3) {
             // 50% chance to become ice
@@ -220,6 +220,31 @@ function applyGravity() {
             if (grid[i][j - 1] === "water") {
               grid[i][j - 1] = "ice";
               grid[i][j] = "ice";
+            }
+          }
+          //in contact with lava, will become stone and generate steam
+          if (grid[i + 1][j] === "lava") {
+            grid[i][j] = "stone";
+            if(grid[i-1][j] === "") {
+              grid[i-1][j] = "steam";
+            }
+          }
+          if (grid[i - 1][j] === "lava") {
+            grid[i][j] = "stone";
+            if(grid[i+1][j] === "") {
+              grid[i+1][j] = "steam";
+            }
+          }
+          if (grid[i][j + 1] === "lava") {
+            grid[i][j] = "stone";
+            if(grid[i][j-1] === "") {
+              grid[i][j-1] = "steam";
+            }
+          }
+          if (grid[i][j - 1] === "lava") {
+            grid[i][j] = "stone";
+            if(grid[i][j+1] === "") {
+              grid[i][j+1] = "steam";
             }
           }
         }
