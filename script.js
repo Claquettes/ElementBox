@@ -35,6 +35,8 @@ const sandButton = document.getElementById('sandButton');
 const coalButton = document.getElementById('coalButton'); 
 const lavaButton = document.getElementById('lavaButton');
 const stoneButton = document.getElementById('stoneButton');
+const freezePowderButton = document.getElementById('freezePowderButton');
+const iceButton = document.getElementById('iceButton');
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
 greenButton.addEventListener('click', () => setCurrentColor('green'));
@@ -44,6 +46,8 @@ sandButton.addEventListener('click', () => setCurrentColor('sand'));
 coalButton.addEventListener('click', () => setCurrentColor('coal'));
 lavaButton.addEventListener('click', () => setCurrentColor('lava'));
 stoneButton.addEventListener('click', () => setCurrentColor('stone'));
+freezePowderButton.addEventListener('click', () => setCurrentColor('freezePowder'));
+iceButton.addEventListener('click', () => setCurrentColor('ice'));
 
 // Functions
 function drawGrid() {
@@ -77,6 +81,12 @@ function drawGrid() {
             break;
           case 'stone':
             ctx.fillStyle = stoneColor;
+            break;
+          case 'freezePowder':
+            ctx.fillStyle = freezePowderColor;
+            break;
+          case 'ice':
+            ctx.fillStyle = iceColor;
             break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
@@ -187,9 +197,30 @@ function applyGravity() {
             grid[i][j - 1] = 'stone';
         }
       }
+      //if the tile is freezePowder
+      if(grid[i][j] === 'freezePowder' || grid[i][j] === 'ice'){
+        //any water tile adjacent to the freezePowder or ice tile becomes ice
+        if(grid[i + 1][j] === 'water'){
+            grid[i + 1][j] = 'ice';
+            grid[i][j] = 'ice';
+        }
+        if(grid[i - 1][j] === 'water'){
+            grid[i - 1][j] = 'ice';
+            grid[i][j] = 'ice';
+        }
+        if(grid[i][j + 1] === 'water'){
+            grid[i][j + 1] = 'ice';
+            grid[i][j] = 'ice';
+        }
+        if(grid[i][j - 1] === 'water'){
+            grid[i][j - 1] = 'ice';
+            grid[i][j] = 'ice';
+        }
+      }
     }
   }
 }
+
 
 const greyColorIndex = 3; // Index of 'grey' in the colors array
 

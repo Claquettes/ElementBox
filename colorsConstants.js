@@ -6,3 +6,5 @@ const sandColor = "#f4a460";
 const coalColor = "#000000";
 const lavaColor = "#d67f1c";
 const stoneColor = "#808080";
+const freezePowderColor = "#aee6e3";
+const iceColor = "#cdebf7";
