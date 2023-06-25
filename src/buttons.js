@@ -10,6 +10,7 @@ const freezePowderButton = document.getElementById('freezePowderButton');
 const iceButton = document.getElementById('iceButton');
 const steamButton = document.getElementById('steamButton');
 
+
 redButton.addEventListener('click', () => setCurrentColor('red'));
 greenButton.addEventListener('click', () => setCurrentColor('green'));
 waterButton.addEventListener('click', () => setCurrentColor('water'));
