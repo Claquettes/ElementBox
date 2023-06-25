@@ -6,14 +6,33 @@
 </head>
 <body>
     <div id="colorButtons">
+      <!-- solids -->
+      <details>
+        <summary>Solids</summary>
+        <button id="greyButton">Beton</button>
+      </details>
+      <!-- liquids -->
+      <details>
+        <summary>Liquids</summary>
+        <button id="waterButton">Water</button>
+        <button id="lavaButton">Lava</button>
+      </details>
+
+      <!-- elements -->
+      <details>
+        <summary>Elements</summary>
+        <button id="coalButton">Coal</button>
+        <button id="sandButton">Sand</button>
+      </details>
+
+
         <button id="redButton">Red</button>
         <button id="greenButton">Green</button>
-        <button id="waterButton">Water</button>
-        <button id="greyButton">Beton</button>
-        <button id="sandButton">Sand</button>
-        <button id="coalButton">Coal</button>
+        
+      
     </div>
   <canvas id="canvas"></canvas>
+  <script src="interraction/withWater.js"></script>
   <script src="colorsConstants.js"></script>
   <script src="script.js"></script>
 </body>
