@@ -1,0 +1,26 @@
+Water--
+Become Ice when touching Ice or freezePowder
+Become Steam when touching Fire or torch WIP    
+
+Lava--
+Become Stone when touching Water or Ice
+
+Beton--
+Not affected by gravity
+
+Ice--  
+Become Water when touching Lava
+Make water freeze 
+
+FreezePowder--
+Become Ice when touching Water or Ice
+Make water freeze
+
+Coal--
+Do nothing
+
+Sand--
+Fall down and under the water
+
+Stone--
+Formed when Lava touch Water or Ice
