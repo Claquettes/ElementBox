@@ -142,6 +142,7 @@ function applyGravity() {
         
       }
       else {
+        
           //we check if the tile below is empty and the current tile is not empty and not grey
       if (grid[i][j] !== '' && grid[i + 1][j] === '' && grid[i][j] !== 'grey') {
         grid[i + 1][j] = grid[i][j];
@@ -221,6 +222,7 @@ function applyGravity() {
       }
       //if the tile is freezePowder
       if(grid[i][j] === 'freezePowder' || grid[i][j] === 'ice'){
+        if(Math.random() > 0.3){ // 50% chance to become ice
         //any water tile adjacent to the freezePowder or ice tile becomes ice
         if(grid[i + 1][j] === 'water'){
             grid[i + 1][j] = 'ice';
@@ -239,6 +241,7 @@ function applyGravity() {
             grid[i][j] = 'ice';
         }
       }
+    }
     }
   }
 }
