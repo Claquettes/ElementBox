@@ -34,6 +34,7 @@ const greyButton = document.getElementById('greyButton');
 const sandButton = document.getElementById('sandButton'); 
 const coalButton = document.getElementById('coalButton'); 
 const lavaButton = document.getElementById('lavaButton');
+const stoneButton = document.getElementById('stoneButton');
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
 greenButton.addEventListener('click', () => setCurrentColor('green'));
@@ -42,6 +43,7 @@ greyButton.addEventListener('click', () => setCurrentColor('grey'));
 sandButton.addEventListener('click', () => setCurrentColor('sand'));
 coalButton.addEventListener('click', () => setCurrentColor('coal'));
 lavaButton.addEventListener('click', () => setCurrentColor('lava'));
+stoneButton.addEventListener('click', () => setCurrentColor('stone'));
 
 // Functions
 function drawGrid() {
@@ -165,6 +167,22 @@ function applyGravity() {
         grid[i][j] = 'water';
         //the tile below becomes sand
         grid[i + 1][j] = 'sand';
+      }
+      //if the tile is lava
+      if(grid[i][j] === 'lava'){
+        //any water tile adjacent to the lava tile becomes stone
+        if(grid[i + 1][j] === 'water'){
+            grid[i + 1][j] = 'stone';
+        }
+        if(grid[i - 1][j] === 'water'){
+            grid[i - 1][j] = 'stone';
+        }
+        if(grid[i][j + 1] === 'water'){
+            grid[i][j + 1] = 'stone';
+        }
+        if(grid[i][j - 1] === 'water'){
+            grid[i][j - 1] = 'stone';
+        }
       }
     }
   }

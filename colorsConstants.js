@@ -5,3 +5,4 @@ const greyColor = "#83979e";
 const sandColor = "#f4a460";
 const coalColor = "#000000";
 const lavaColor = "#d67f1c";
+const stoneColor = "#808080";
