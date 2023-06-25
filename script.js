@@ -8,9 +8,6 @@ const numCols = gridWidth / gridSize;
 const numRows = gridHeight / gridSize;
 const colors = ['red', 'green', 'water', 'grey', 'sand']; // Added 'grey' color
 
-
-
-
 // Initialize grid
 const grid = [];
 for (let i = 0; i < numRows; i++) {
@@ -36,6 +33,7 @@ const waterButton = document.getElementById('waterButton');
 const greyButton = document.getElementById('greyButton');
 const sandButton = document.getElementById('sandButton'); 
 const coalButton = document.getElementById('coalButton'); 
+const lavaButton = document.getElementById('lavaButton');
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
 greenButton.addEventListener('click', () => setCurrentColor('green'));
@@ -43,6 +41,7 @@ waterButton.addEventListener('click', () => setCurrentColor('water'));
 greyButton.addEventListener('click', () => setCurrentColor('grey'));
 sandButton.addEventListener('click', () => setCurrentColor('sand'));
 coalButton.addEventListener('click', () => setCurrentColor('coal'));
+lavaButton.addEventListener('click', () => setCurrentColor('lava'));
 
 // Functions
 function drawGrid() {
@@ -70,6 +69,10 @@ function drawGrid() {
             break;
           case 'coal':
             ctx.fillStyle = coalColor;
+            break;
+          case 'lava':
+            ctx.fillStyle = lavaColor;
+            break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }
