@@ -1,6 +1,6 @@
 Water--
 Become Ice when touching Ice or freezePowder
-Become Steam when touching Fire or torch WIP    
+Become Steam when touching Lava
 
 Lava--
 Become Stone when touching Water or Ice
@@ -24,3 +24,7 @@ Fall down and under the water
 
 Stone--
 Formed when Lava touch Water or Ice
+
+Steam--
+Goes up
+Formed when Water touch Lava
