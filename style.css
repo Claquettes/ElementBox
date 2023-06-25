@@ -1,26 +1,52 @@
+
+:root {
+    --main: #3db277;
+    --secondary: #35031b;
+}
+
+
 body {
     margin: 0;
     padding: 0;
+    background-color: var(--secondary);
+    font-family: 'Roboto', sans-serif;
+    color: var(--main);
 }
   
 canvas{
     position: absolute;
     display: block;
     margin: 20px auto;
-    border: 1px solid black;
+    border: 10px solid var(--main);
     height: calc(50vh - 40px);
     width: calc(50vh - 40px);
-    left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%)
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #colorButtons{
     position: absolute;
-    top : 30%;
-    left : 30%;
-    transform: translate(-50%, -50%);
+    top: calc(50vh - 40px);
+    left: 50%;
+
     display: block;
     margin: 20px auto;
     border: 1px solid black;
+    background-color: var(--main);
+    color: var(--secondary);
 }
+
+#top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background-color: var(--main);
+    color: var(--secondary);
+    text-align: center;
+    font-size: 1.5em;
+    padding: 2%;
+}
+
