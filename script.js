@@ -128,7 +128,7 @@ function applyGravity() {
   for (let i = numRows - 2; i >= 0; i--) {
     for (let j = 0; j < numCols; j++) {
       //we start by checking collision for gases. 
-      if(grid[i][j] === 'steam'){
+      if(grid[i][j] === 'steam' && grid[i - 1][j] === ''){
         if(i - 1 >= 0){
           //10% chance to go up
           if(Math.random() > 0.667){
