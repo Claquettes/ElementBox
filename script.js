@@ -78,6 +78,9 @@ function drawGrid() {
           case "acid":
             ctx.fillStyle = acidColor;
             break;
+          case "generator":
+            ctx.fillStyle = generatorColor;
+            break;
 
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
@@ -105,10 +108,17 @@ function handleMouseMove(event) {
     const col = Math.floor(canvasClickX / gridSize);
     const row = Math.floor(canvasClickY / gridSize);
     if (col >= 0 && col < numCols && row >= 0 && row < numRows) {
+
+      //we check if we are in erase mode
+      if (currentColor === "") {
+        grid[row][col] = "";
+      } else {
+        
       //we check if the tile is empty
       if (grid[row][col] === "") {
         grid[row][col] = currentColor;
       }
+    }
     }
   }
 }
