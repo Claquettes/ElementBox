@@ -11,7 +11,7 @@ canvas.height = canvasSize;
 
 const numCols = Math.ceil(canvasSize / gridSize);
 const numRows = Math.ceil(canvasSize / gridSize);
-const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
+
 
 // Initialize grid
 const grid = [];
@@ -297,6 +297,24 @@ function applyGravity() {
             }
           }
         }
+
+        //if the tile is acid
+        if (grid[i][j] === "acid") {
+          if(Math.random() > 0.90){
+          //any tile that is not acid or stone adjacent to the acid tile becomes acid
+          if (grid[i + 1][j] !== "acid" && grid[i + 1][j] !== "stone" && grid[i + 1][j] !== "") {
+            grid[i + 1][j] = "";
+          }
+          if (grid[i - 1][j] !== "acid" && grid[i - 1][j] !== "stone" && grid[i - 1][j] !== "") {
+            grid[i - 1][j] = "";
+          }
+          if (grid[i][j + 1] !== "acid" && grid[i][j + 1] !== "stone" && grid[i][j + 1] !== "") { 
+            grid[i][j + 1] = "";
+          }
+          if (grid[i][j - 1] !== "acid" && grid[i][j - 1] !== "stone" && grid[i][j - 1] !== "") {
+            grid[i][j - 1] = "";
+          }
+        }}
       }
     }
   }
