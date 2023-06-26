@@ -12,6 +12,8 @@ canvas.height = canvasSize;
 const numCols = Math.ceil(canvasSize / gridSize);
 const numRows = Math.ceil(canvasSize / gridSize);
 
+const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
+
 
 // Initialize grid
 const grid = [];
