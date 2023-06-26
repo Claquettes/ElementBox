@@ -11,3 +11,5 @@ const iceColor = "#cdebf7";
 const steamColor = "#7e888c";
 const acidColor = "#00ff00";
 const generatorColor = "#ff00ff";
+const batteryColor = "#9dfc03";
+const wireColor = "#ff8400";

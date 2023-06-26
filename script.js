@@ -81,7 +81,12 @@ function drawGrid() {
           case "generator":
             ctx.fillStyle = generatorColor;
             break;
-
+          case "battery":
+            ctx.fillStyle = batteryColor;
+            break;
+          case "wire":
+            ctx.fillStyle = wireColor;
+            break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }
@@ -108,17 +113,15 @@ function handleMouseMove(event) {
     const col = Math.floor(canvasClickX / gridSize);
     const row = Math.floor(canvasClickY / gridSize);
     if (col >= 0 && col < numCols && row >= 0 && row < numRows) {
-
       //we check if we are in erase mode
       if (currentColor === "") {
         grid[row][col] = "";
       } else {
-        
-      //we check if the tile is empty
-      if (grid[row][col] === "") {
-        grid[row][col] = currentColor;
+        //we check if the tile is empty
+        if (grid[row][col] === "") {
+          grid[row][col] = currentColor;
+        }
       }
-    }
     }
   }
 }
@@ -138,11 +141,18 @@ function applyGravity() {
           grid[i][j] = "";
         }
       } else {
-        //we check if the tile below is empty and the current tile is not empty and not grey
+        //we check if the tile below is empty and the current tile is not empty and not solid 
         if (
           grid[i][j] !== "" &&
           grid[i + 1][j] === "" &&
-          grid[i][j] !== "grey" && grid[i][j] !== "ice" && grid[i][j] !== "stone" && grid[i][j]!=="generator" //we do not apply gravity to solid tiles
+          grid[i][j] !== "grey" &&
+          grid[i][j] !== "ice" &&
+          grid[i][j] !== "stone" &&
+          //we do not apply gravity to solid tiles, nor electronics
+          grid[i][j] !== "generator" &&
+          grid[i][j] !== "battery" &&
+          grid[i][j] !== "wire"
+           
         ) {
           grid[i + 1][j] = grid[i][j];
           grid[i][j] = "";
@@ -239,26 +249,26 @@ function applyGravity() {
           //in contact with lava, will become stone and generate steam
           if (grid[i + 1][j] === "lava") {
             grid[i][j] = "stone";
-            if(grid[i-1][j] === "") {
-              grid[i-1][j] = "steam";
+            if (grid[i - 1][j] === "") {
+              grid[i - 1][j] = "steam";
             }
           }
           if (grid[i - 1][j] === "lava") {
             grid[i][j] = "stone";
-            if(grid[i+1][j] === "") {
-              grid[i+1][j] = "steam";
+            if (grid[i + 1][j] === "") {
+              grid[i + 1][j] = "steam";
             }
           }
           if (grid[i][j + 1] === "lava") {
             grid[i][j] = "stone";
-            if(grid[i][j-1] === "") {
-              grid[i][j-1] = "steam";
+            if (grid[i][j - 1] === "") {
+              grid[i][j - 1] = "steam";
             }
           }
           if (grid[i][j - 1] === "lava") {
             grid[i][j] = "stone";
-            if(grid[i][j+1] === "") {
-              grid[i][j+1] = "steam";
+            if (grid[i][j + 1] === "") {
+              grid[i][j + 1] = "steam";
             }
           }
         }
@@ -270,7 +280,7 @@ function applyGravity() {
           if (grid[i + 1][j] !== "" && grid[i + 1][j] !== "generator") {
             adjacentTiles.push(grid[i + 1][j]);
           }
-          if (grid[i - 1][j] !== "" && grid[i - 1][j] !== "generator"){
+          if (grid[i - 1][j] !== "" && grid[i - 1][j] !== "generator") {
             adjacentTiles.push(grid[i - 1][j]);
           }
           if (grid[i][j + 1] !== "" && grid[i][j + 1] !== "generator") {
@@ -281,8 +291,9 @@ function applyGravity() {
           }
           //we generate a tile below the generator
           if (adjacentTiles.length > 0) {
-            if(grid[i+1][j] === "") {
-              grid[i + 1][j] = adjacentTiles[Math.floor(Math.random() * adjacentTiles.length)];
+            if (grid[i + 1][j] === "") {
+              grid[i + 1][j] =
+                adjacentTiles[Math.floor(Math.random() * adjacentTiles.length)];
             }
           }
         }
