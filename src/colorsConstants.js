@@ -9,3 +9,4 @@ const stoneColor = "#808080";
 const freezePowderColor = "#aee6e3";
 const iceColor = "#cdebf7";
 const steamColor = "#7e888c";
+const acidColor = "#00ff00";

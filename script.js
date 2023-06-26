@@ -75,6 +75,10 @@ function drawGrid() {
           case "steam":
             ctx.fillStyle = steamColor;
             break;
+          case "acid":
+            ctx.fillStyle = acidColor;
+            break;
+
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }
@@ -202,7 +206,7 @@ function applyGravity() {
         }
         //if the tile is freezePowder or ice
         if (grid[i][j] === "freezePowder" || grid[i][j] === "ice") {
-          if (Math.random() > 0.3) {
+          if (Math.random() > 0.7) {
             // 50% chance to become ice
             //any water tile adjacent to the freezePowder or ice tile becomes ice
             if (grid[i + 1][j] === "water") {
@@ -265,6 +269,7 @@ function setCurrentColor(color) {
 function update() {
   applyGravity();
   drawGrid();
+  requestAnimationFrame(update);
 }
 
-setInterval(update, 100); // Update every 1/10 of a second
+update();
