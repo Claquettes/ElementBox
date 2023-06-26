@@ -128,7 +128,7 @@ function applyGravity() {
         if (
           grid[i][j] !== "" &&
           grid[i + 1][j] === "" &&
-          grid[i][j] !== "grey"
+          grid[i][j] !== "grey" && grid[i][j] !== "ice" && grid[i][j] !== "stone" //we do not apply gravity to solid tiles
         ) {
           grid[i + 1][j] = grid[i][j];
           grid[i][j] = "";

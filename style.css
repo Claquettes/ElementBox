@@ -70,6 +70,12 @@ summary {
    font-size: 1.5em;
 }
 
+/*hover for summary*/
+summary:hover {
+    background-color: var(--main);
+    color: var(--secondary);
+}
+
 #mainContainer {
     position: absolute;
     left: 20%;
@@ -82,3 +88,4 @@ summary {
 .individualButtonContainer {
     margin: 6%
 }
+
