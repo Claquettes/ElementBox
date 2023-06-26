@@ -132,7 +132,7 @@ function applyGravity() {
         if (
           grid[i][j] !== "" &&
           grid[i + 1][j] === "" &&
-          grid[i][j] !== "grey" && grid[i][j] !== "ice" && grid[i][j] !== "stone" //we do not apply gravity to solid tiles
+          grid[i][j] !== "grey" && grid[i][j] !== "ice" && grid[i][j] !== "stone" && grid[i][j]!=="generator" //we do not apply gravity to solid tiles
         ) {
           grid[i + 1][j] = grid[i][j];
           grid[i][j] = "";
@@ -249,6 +249,30 @@ function applyGravity() {
             grid[i][j] = "stone";
             if(grid[i][j+1] === "") {
               grid[i][j+1] = "steam";
+            }
+          }
+        }
+        //if the tile is a generator
+        if (grid[i][j] === "generator") {
+          //we generate a tile below the generator/ the tile generated is of the type as one of the 4 tiles adjacent to the generator
+          //we check the 4 tiles adjacent to the generator
+          let adjacentTiles = [];
+          if (grid[i + 1][j] !== "" && grid[i + 1][j] !== "generator") {
+            adjacentTiles.push(grid[i + 1][j]);
+          }
+          if (grid[i - 1][j] !== "" && grid[i - 1][j] !== "generator"){
+            adjacentTiles.push(grid[i - 1][j]);
+          }
+          if (grid[i][j + 1] !== "" && grid[i][j + 1] !== "generator") {
+            adjacentTiles.push(grid[i][j + 1]);
+          }
+          if (grid[i][j - 1] !== "" && grid[i][j - 1] !== "generator") {
+            adjacentTiles.push(grid[i][j - 1]);
+          }
+          //we generate a tile below the generator
+          if (adjacentTiles.length > 0) {
+            if(grid[i+1][j] === "") {
+              grid[i + 1][j] = adjacentTiles[Math.floor(Math.random() * adjacentTiles.length)];
             }
           }
         }

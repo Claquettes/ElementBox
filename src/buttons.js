@@ -10,6 +10,7 @@ const freezePowderButton = document.getElementById('freezePowderButton');
 const iceButton = document.getElementById('iceButton');
 const steamButton = document.getElementById('steamButton');
 const acidButton = document.getElementById('acidButton');
+const generatorButton = document.getElementById('generatorButton');
 
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
@@ -24,3 +25,4 @@ freezePowderButton.addEventListener('click', () => setCurrentColor('freezePowder
 iceButton.addEventListener('click', () => setCurrentColor('ice'));
 steamButton.addEventListener('click', () => setCurrentColor('steam'));
 acidButton.addEventListener('click', () => setCurrentColor('acid'));
+generatorButton.addEventListener('click', () => setCurrentColor('generator'));
