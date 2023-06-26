@@ -11,6 +11,8 @@ const iceButton = document.getElementById('iceButton');
 const steamButton = document.getElementById('steamButton');
 const acidButton = document.getElementById('acidButton');
 const generatorButton = document.getElementById('generatorButton');
+const eraserButton = document.getElementById('eraserButton');
+const clearButton = document.getElementById('clearButton');
 
 
 redButton.addEventListener('click', () => setCurrentColor('red'));
@@ -26,3 +28,13 @@ iceButton.addEventListener('click', () => setCurrentColor('ice'));
 steamButton.addEventListener('click', () => setCurrentColor('steam'));
 acidButton.addEventListener('click', () => setCurrentColor('acid'));
 generatorButton.addEventListener('click', () => setCurrentColor('generator'));
+eraserButton.addEventListener('click', () => setCurrentColor(''));
+
+
+clearButton.addEventListener('click', () => {
+    for (let i = 0; i < grid.length; i++) {
+        grid[i].fill('');
+    }
+    draw();
+    }
+);
