@@ -8,49 +8,48 @@
   <div id="top">
     <h1>Claq's Sandbox</h1>
   </div>
+  <div id="mainContainer">
     <div id="colorButtons">
       <!-- solids -->
       <details>
         <summary>Solids</summary>
-        <button id="greyButton">Beton</button>
-        <button id="stoneButton">Stone</button>
-        <button id="iceButton">Ice</button>
+        <div id="greyButton" class="button">Beton</div>
+        <div id="stoneButton" class="button">Stone</div>
+        <div id="iceButton" class="button">Ice</div>
       </details>
       <!-- liquids -->
       <details>
         <summary>Liquids</summary>
-        <button id="waterButton">Water</button>
-        <button id="lavaButton">Lava</button>
+        <div id="waterButton" class="button">Water</div>
+        <div id="lavaButton" class="button">Lava</div>
       </details>
 
       <!-- elements -->
       <details>
         <summary>Elements</summary>
-        <button id="coalButton">Coal</button>
+        <div id="coalButton" class="button">Coal</div>
       </details>
 
       <!-- powders -->
       <details>
         <summary>Powders</summary>
-        <button id="redButton">Red</button>
-        <button id="greenButton">Green</button>
-        <button id="sandButton">Sand</button>
-        <button id="freezePowderButton">Freeze Powder</button>
+        <div id="greenButton" class="button">Green</div>
+        <div id="redButton" class="button">Red</div>
+        <div id="sandButton" class="button">Sand</div>
+        <div id="freezePowderButton" class="button">Freeze Powder</div>
       </details>
-
       <!-- gasses -->
       <details>
         <summary>Gasses</summary>
         <button id="steamButton">Steam</button>
       </details>
-
-      
-        
-      
     </div>
-  <canvas id="canvas"></canvas>
+
+    <canvas id="canvas"></canvas>
+  </div>
+
   <script src="src/buttons.js"></script>
-  <script src="colorsConstants.js"></script>
+  <script src="src/colorsConstants.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
