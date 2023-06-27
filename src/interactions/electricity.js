@@ -55,6 +55,11 @@ function calculateElectricity(i, j) {
           grid[i][j] = "generator";
         }
         break;
+      case "led":
+        if (hasElectricity) {
+          grid[i][j] = "electrifiedLed";
+        }
+        break;
     }
   }
 }
