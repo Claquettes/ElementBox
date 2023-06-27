@@ -1,11 +1,17 @@
 function applyExplosion(i, j, explosiveType) {
   let explosionRadius = 0;
   switch (explosiveType) {
+    case "gunpowder":
+      explosionRadius = 1;
+      break;
     case "tnt":
       explosionRadius = 2;
       break;
     case "dynamite":
       explosionRadius = 3;
+      break;
+    case "c4":
+      explosionRadius = 4;
       break;
   }
 

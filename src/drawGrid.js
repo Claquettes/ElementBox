@@ -88,6 +88,20 @@ function drawGrid() {
             );
             specialrender = true;
             break;
+          case "gunpowder":
+            ctx.fillStyle = gunpowderFirstColor;
+            //we render all of the tile in the first color
+            ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+            //we render 3 white dots in the middle of the tile
+            ctx.fillStyle = gunpowderSecondColor;
+            ctx.fillRect(
+              j * gridSize + gridSize / 2 - 2,
+              i * gridSize + gridSize / 2 - 2,
+              4,
+              4
+            );
+            specialrender = true;
+            break;
         }
         if (!specialrender) {
           ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);

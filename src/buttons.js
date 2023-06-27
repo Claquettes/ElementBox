@@ -20,6 +20,7 @@ const smokeButton = document.getElementById("smokeButton");
 
 const eraserButton = document.getElementById("eraserButton");
 const clearButton = document.getElementById("clearButton");
+const gunpowderButton = document.getElementById("gunpowderButton");
 
 redButton.addEventListener("click", () => setCurrentColor("red"));
 greenButton.addEventListener("click", () => setCurrentColor("green"));
@@ -49,3 +50,4 @@ clearButton.addEventListener("click", () => {
 dynamiteButton.addEventListener("click", () => setCurrentColor("dynamite"));
 c4Button.addEventListener("click", () => setCurrentColor("c4"));
 smokeButton.addEventListener("click", () => setCurrentColor("smoke"));
+gunpowderButton.addEventListener("click", () => setCurrentColor("gunpowder"));
