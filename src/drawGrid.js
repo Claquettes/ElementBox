@@ -79,6 +79,10 @@ function drawGrid() {
             renderGunPowder(i, j);
             specialrender = true;
             break;
+          case "fire":
+            renderFire(i, j);
+            specialrender = true;
+            break;
         }
         if (!specialrender) {
           ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
@@ -118,5 +122,26 @@ function renderDynamite(i, j) {
 
   for (let k = 0; k < 3; k++) {
     ctx.fillRect(lineX + k * lineSpacing, lineY, 2, gridSize);
+  }
+}
+
+function renderFire(i, j) {
+  const fireColors = ['#FF3300', '#FF6600', '#FF9900', '#FFCC00', '#FFCC33'];
+  
+  // Render the tile background
+  ctx.fillStyle = "FF0000" //red background
+  ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+  
+  // Render the fire texture
+  for (let k = 0; k < 5; k++) {
+    ctx.fillStyle = fireColors[k]; // Use different fire colors
+    
+    // Calculate the coordinates and dimensions of each fire pixel
+    const pixelSize = Math.floor(gridSize / 2);
+    const pixelX = j * gridSize + Math.floor(Math.random() * gridSize);
+    const pixelY = i * gridSize + Math.floor(Math.random() * gridSize);
+    
+    // Render the fire pixel
+    ctx.fillRect(pixelX, pixelY, pixelSize, pixelSize);
   }
 }

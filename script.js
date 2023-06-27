@@ -19,6 +19,7 @@ const electronics = ["generator", "battery", "wire", "electrifiedWire"];
 const explosives = ["tnt", "dynamite", "c4", "gunpowder"];
 const gases = ["steam", "smoke"];
 const ignitionSources = ["fire", "lava", "battery", "electrifiedWire"]; 
+const notAffectedByGravity = ["fire"];
 
 // Initialize grid
 const grid = [];
@@ -87,7 +88,8 @@ function applyGravity() {
           grid[i + 1][j] === "" &&
           //we do not apply gravity if the tile is in the solid or electronics list
           !solids.includes(grid[i][j]) &&
-          !electronics.includes(grid[i][j])
+          !electronics.includes(grid[i][j]) &&
+          !notAffectedByGravity.includes(grid[i][j])
         ) {
           grid[i + 1][j] = grid[i][j];
           grid[i][j] = "";
