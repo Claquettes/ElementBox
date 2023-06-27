@@ -16,6 +16,7 @@ const wireButton = document.getElementById("wireButton");
 const tntButton = document.getElementById("tntButton");
 const dynamiteButton = document.getElementById("dynamiteButton");
 const c4Button = document.getElementById("c4Button");
+const smokeButton = document.getElementById("smokeButton");
 
 const eraserButton = document.getElementById("eraserButton");
 const clearButton = document.getElementById("clearButton");
@@ -47,3 +48,4 @@ clearButton.addEventListener("click", () => {
 });
 dynamiteButton.addEventListener("click", () => setCurrentColor("dynamite"));
 c4Button.addEventListener("click", () => setCurrentColor("c4"));
+smokeButton.addEventListener("click", () => setCurrentColor("smoke"));

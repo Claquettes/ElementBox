@@ -31,10 +31,7 @@ function applyExplosion(i, j, explosiveType) {
       if (k === i && l === j) {
         // Explode the explosive tile itself
         grid[k][l] = "";
-        //if the tile above is empty, generate a smoke tile
-        if (grid[k - 1][l] === "") {
-          grid[k - 1][l] = "smoke";
-        }
+        generateSmokeFromExplosion(k, l);
       } else if (grid[k][l] === explosiveType) {
         // Trigger chain reaction for explosive tiles within the radius
         applyExplosion(k, l, explosiveType);
@@ -43,5 +40,17 @@ function applyExplosion(i, j, explosiveType) {
         grid[k][l] = "";
       }
     }
+  }
+}
+
+function generateSmokeFromExplosion(i, j) {
+  if (Math.random() > 0.5) {
+    grid[i - 1][j - 1] = "smoke";
+  }
+  if (Math.random() > 0.5) {
+    grid[i - 3][j] = "smoke";
+  }
+  if (Math.random() > 0.5) {
+    grid[i - 2][j + 1] = "smoke";
   }
 }

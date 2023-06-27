@@ -17,6 +17,7 @@ const liquids = ["water", "lava", "acid", "electrifiedWater"]; // Added 'electri
 const solids = ["stone", "grey", "ice"];
 const electronics = ["generator", "battery", "wire", "electrifiedWire"]; // Added 'electrifiedWire' electronics
 const explosives = ["tnt", "dynamite", "c4"];
+const gases = ["steam", "smoke"];
 
 // Initialize grid
 const grid = [];
@@ -75,16 +76,9 @@ function applyGravity() {
   for (let i = numRows - 2; i >= 0; i--) {
     for (let j = 0; j < numCols; j++) {
       //we start by checking collision for gases.
-      if (grid[i][j] === "steam" && grid[i - 1][j] === "") {
-        if (i - 1 > 0) {
-          //10% chance to go up
-          if (Math.random() > 0.667) {
-            grid[i - 1][j] = "steam";
-            grid[i][j] = "";
-          }
-        } else {
-          grid[i][j] = "";
-        }
+      if (gases.includes(grid[i][j])) {
+        let gasType = grid[i][j];
+        applyGasesGravity(i, j, gasType);
       } else {
         //we check if the tile below is empty and the current tile is not empty and not solid
         if (

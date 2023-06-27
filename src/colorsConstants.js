@@ -14,7 +14,11 @@ const generatorColor = "#5e345e";
 const batteryColor = "#9dfc03";
 const wireColor = "#4a2d16";
 const tntColor = "#ff0000";
-const c4Color = "#ff0000";
+//dynamite colors:
+const dynamiteFirstColor = "#ff0000";
+const dynamiteSecondColor = "#ffffff";
+const c4Color = "#45362b";
+const smokeColor = "#434744";
 
 //Electrified version of the colors (for the electrified version of the elements)
 const electrifiedWaterColor = "#619eff";
