@@ -30,4 +30,19 @@ function liquidInteraction(i, j, type) {
   } else {
     grid[i][j] = type;
   }
+  if(type === "water"){
+    //we check all the tiles adjacent to the water tile (even the diagonal ones)
+    if (grid[i + 1][j] === "fire") {
+      grid[i + 1][j] = "steam";
+    }
+    if (grid[i - 1][j] === "fire") {
+      grid[i - 1][j] = "steam";
+    }
+    if (grid[i][j + 1] === "fire") {
+      grid[i][j + 1] = "steam";
+    }
+    if (grid[i][j - 1] === "fire") {
+      grid[i][j - 1] = "steam";
+    }
+  }
 }
