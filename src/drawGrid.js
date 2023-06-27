@@ -92,6 +92,11 @@ function drawGrid() {
           case "oil":
             ctx.fillStyle = oilColor;
             break;
+            case "ANDGate":
+              renderAND(i, j);
+              specialrender = true;
+              break;
+              
             
         }
         if (!specialrender) {
@@ -134,6 +139,60 @@ function renderDynamite(i, j) {
     ctx.fillRect(lineX + k * lineSpacing, lineY, 2, gridSize);
   }
 }
+
+function renderAND(i, j) {
+  const tileColor = 'grey';
+  const dotColor = 'blue';
+  const redDotColor = 'red';
+
+  // Render the entire tile in tileColor
+  ctx.fillStyle = tileColor;
+  ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+
+  // Draw the equilateral triangle pointing to the LEFT
+  const triangleSize = gridSize / 2; // Adjust this value to change the size of the triangle
+  const triangleX = (j + 0.5) * gridSize;
+  const triangleY = (i + 0.7) * gridSize - triangleSize / 2; // Adjust this value to change the position of the triangle
+
+  ctx.beginPath();
+  ctx.moveTo(triangleX - triangleSize / 2, triangleY - triangleSize / 2);
+  ctx.lineTo(triangleX + triangleSize / 2, triangleY);
+  ctx.lineTo(triangleX - triangleSize / 2, triangleY + triangleSize / 2);
+  ctx.closePath();
+
+  ctx.fillStyle = 'black'; // Adjust this color to change the color of the triangle
+  ctx.fill();
+
+  // Draw the red dot on the right of the tile
+  const dotSize = gridSize / 8; // Adjust this value to change the size of the dot
+  const dotX = (j + 1) * gridSize - dotSize * 1.5;
+  const dotY = (i + 0.5) * gridSize - dotSize / 2;
+
+  ctx.fillStyle = redDotColor;
+  ctx.beginPath();
+  ctx.arc(dotX, dotY, dotSize, 0, 2 * Math.PI);
+  ctx.closePath();
+  ctx.fill();
+
+  // Draw the two blue dots centered on the horizontal axis
+  const blueDotSize = gridSize / 8; // Adjust this value to change the size of the dots
+  const blueDotX = (j + 0.5) * gridSize - blueDotSize / 2;
+  const blueDotTopY = (i + 0.25) * gridSize - blueDotSize / 2;
+  const blueDotBottomY = (i + 0.75) * gridSize - blueDotSize / 2;
+
+  ctx.fillStyle = dotColor;
+  ctx.beginPath();
+  ctx.arc(blueDotX, blueDotTopY, blueDotSize, 0, 2 * Math.PI);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(blueDotX, blueDotBottomY, blueDotSize, 0, 2 * Math.PI);
+  ctx.closePath();
+  ctx.fill();
+}
+
+
 
 function renderFire(i, j) {
   const fireColors = ["#FF3300", "#FF6600", "#FF9900", "#FFCC00", "#FFCC33"];
