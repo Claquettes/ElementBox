@@ -15,6 +15,7 @@ const numRows = Math.ceil(canvasSize / gridSize);
 const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
 const liquids = ["water", "lava", "acid", "electrifiedWater"]; // Added 'electrifiedWater' liquid
 const solids = ["stone", "grey", "ice"];
+const electronics = ["generator", "battery", "wire", "electrifiedWire"]; // Added 'electrifiedWire' electronics
 
 // Initialize grid
 const grid = [];
@@ -88,16 +89,9 @@ function applyGravity() {
         if (
           grid[i][j] !== "" &&
           grid[i + 1][j] === "" &&
-          grid[i][j] !== "grey" &&
-          grid[i][j] !== "ice" &&
-          grid[i][j] !== "stone" &&
-          //we do not apply gravity to solid tiles, nor electronics
-          grid[i][j] !== "generator" &&
-          grid[i][j] !== "battery" &&
-          grid[i][j] !== "wire" &&
-          grid[i][j] !== "electrifiedWire" &&
-          grid[i][j] !== "electrifiedGenerator" &&
-          grid[i][j] !== "electrifiedWater"
+          //we do not apply gravity if the tile is in the solid or electronics list
+          !solids.includes(grid[i][j]) &&
+          !electronics.includes(grid[i][j])
         ) {
           grid[i + 1][j] = grid[i][j];
           grid[i][j] = "";
