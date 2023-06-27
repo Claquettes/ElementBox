@@ -14,6 +14,8 @@ const generatorButton = document.getElementById("generatorButton");
 const batteryButton = document.getElementById("batteryButton");
 const wireButton = document.getElementById("wireButton");
 const tntButton = document.getElementById("tntButton");
+const dynamiteButton = document.getElementById("dynamiteButton");
+const c4Button = document.getElementById("c4Button");
 
 const eraserButton = document.getElementById("eraserButton");
 const clearButton = document.getElementById("clearButton");
@@ -43,3 +45,5 @@ clearButton.addEventListener("click", () => {
   }
   draw();
 });
+dynamiteButton.addEventListener("click", () => setCurrentColor("dynamite"));
+c4Button.addEventListener("click", () => setCurrentColor("c4"));

@@ -1,4 +1,5 @@
 function drawGrid() {
+  let specialrender = false;
   ctx.clearRect(0, 0, canvasSize, canvasSize);
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
@@ -64,8 +65,23 @@ function drawGrid() {
           case "tnt":
             ctx.fillStyle = tntColor;
             break;
-        }
-        ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+            case "dynamite":
+              ctx.fillStyle = redColor;
+              //we render all of the tile in red
+              ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+              //we render the 3 white lines
+              ctx.fillStyle = "white";
+              ctx.fillRect(j * gridSize + 5, i * gridSize + 5, gridSize - 10, 5);
+              ctx.fillRect(j * gridSize + 5, i * gridSize + 10, 5, gridSize - 20);
+              ctx.fillRect(j * gridSize + 5, i * gridSize + gridSize - 10, gridSize - 10, 5);
+              specialrender = true;
+              break;
+              
+          }
+          if (!specialrender) {
+            ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+          }
+          specialrender = false;
       }
     }
   }

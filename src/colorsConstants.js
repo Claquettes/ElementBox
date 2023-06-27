@@ -14,6 +14,7 @@ const generatorColor = "#5e345e";
 const batteryColor = "#9dfc03";
 const wireColor = "#4a2d16";
 const tntColor = "#ff0000";
+const c4Color = "#ff0000";
 
 //Electrified version of the colors (for the electrified version of the elements)
 const electrifiedWaterColor = "#619eff";
