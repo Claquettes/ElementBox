@@ -14,7 +14,6 @@ const numRows = Math.ceil(canvasSize / gridSize);
 
 const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
 
-
 // Initialize grid
 const grid = [];
 for (let i = 0; i < numRows; i++) {
@@ -133,7 +132,7 @@ function handleMouseMove(event) {
           grid[row][col] = currentColor;
         }
         //else we console.log the type of the tile
-        else(console.log(grid[row][col]));
+        else console.log(grid[row][col]);
       }
     }
   }
@@ -154,7 +153,7 @@ function applyGravity() {
           grid[i][j] = "";
         }
       } else {
-        //we check if the tile below is empty and the current tile is not empty and not solid 
+        //we check if the tile below is empty and the current tile is not empty and not solid
         if (
           grid[i][j] !== "" &&
           grid[i + 1][j] === "" &&
@@ -164,8 +163,10 @@ function applyGravity() {
           //we do not apply gravity to solid tiles, nor electronics
           grid[i][j] !== "generator" &&
           grid[i][j] !== "battery" &&
-          grid[i][j] !== "wire" && grid[i][j] !== "electrifiedWire" && grid[i][j] !== "electrifiedGenerator" && grid[i][j] !== "electrifiedWater"
-           
+          grid[i][j] !== "wire" &&
+          grid[i][j] !== "electrifiedWire" &&
+          grid[i][j] !== "electrifiedGenerator" &&
+          grid[i][j] !== "electrifiedWater"
         ) {
           grid[i + 1][j] = grid[i][j];
           grid[i][j] = "";
@@ -214,10 +215,7 @@ function applyGravity() {
         }
         //if a sand tile is ON TOP of a water tile
         if (grid[i][j] === "sand" && grid[i + 1][j] === "water") {
-          //the tile on the top becomes water
-          grid[i][j] = "water";
-          //the tile below becomes sand
-          grid[i + 1][j] = "sand";
+          sandInteraction(i, j);
         }
         //if the tile is lava
         if (grid[i][j] === "lava") {
@@ -249,13 +247,6 @@ function setCurrentColor(color) {
     currentColor = color;
   }
 }
-
-
-
-    
-
-
-
 
 function update() {
   applyGravity();
