@@ -4,7 +4,12 @@ const ctx = canvas.getContext("2d");
 
 const canvasSize = 1000;
 
-const gridSize = canvasSize / 50;
+let gridSize = canvasSize / 33;
+
+function changeSize(){
+  gridSize = canvasSize / document.getElementById("gridSizeInput").value; 
+  console.log(gridSize);
+}
 
 canvas.width = canvasSize;
 canvas.height = canvasSize;

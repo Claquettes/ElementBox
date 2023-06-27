@@ -1,117 +1,123 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ElementBox</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <meta name="viewport" content="width=device-width">
-  <meta charset="utf-8">
-  <link rel="icon" href="assets/ELEMENTBOXLOGO.ico" type="image/x-icon">
-</head>
-<body>
-  <div id="top">
-    <h1>ElementBox </h1>
-  </div>
-  <div id="mainContainer">
-    <div id="colorButtons">
-      <!-- solids -->
-      <details>
-        <summary>Solids</summary>
-        <div class="individualButtonContainer">
-          <div id="greyButton" class="button">Beton</div>
-          <div id="stoneButton" class="button">Stone</div>
-          <div id="iceButton" class="button">Ice</div>
-        </div>
-      </details>
-      <!-- liquids -->
-      <details>
-        <summary>Liquids</summary>
-          <div class="individualButtonContainer">
-          <div id="waterButton" class="button">Water</div>
-          <div id="lavaButton" class="button">Lava</div>
-          <div id="acidButton" class="button">Acid</div>
-          <div id="oilButton" class="button">Oil</div>
-        </div>
-      </details>
-
-      <!-- elements -->
-      <details>
-        <summary>Elements</summary>
-        <div class="individualButtonContainer">
-          <div id="coalButton" class="button">Coal</div>
-        </div>
-      </details>
-
-      <!-- powders -->
-      <details>
-        <summary>Powders</summary>
-        <div class="individualButtonContainer">
-          <div id="greenButton" class="button">Green</div>
-          <div id="redButton" class="button">Red</div>
-          <div id="sandButton" class="button">Sand</div>
-          <div id="freezePowderButton" class="button">Freeze Powder</div>
-        </div>
-      </details>
-      <!-- gasses -->
-      <details>
-        <summary>Gasses</summary>
-        <div class="individualButtonContainer">
-          <div id="steamButton" class="button">Steam</div>
-          <div id="smokeButton" class="button">Smoke</div>
-        </div>
-      </details>
-
-      <details>
-        <summary>Explosives</summary>
-        <div class="individualButtonContainer">
-          <div id="fireButton" class="button">Fire</div>
-          <div id="gunpowderButton" class="button">Gunpowder</div>
-          <div id="tntButton" class="button">TNT</div>
-          <div id="dynamiteButton" class="button">Dynamite</div>
-          <div id="c4Button" class="button">C4</div>
-
-        </div>
-      </details>
-
-      <!-- other -->
-      <details>
-        <summary>Electronics</summary>
-        <div class="individualButtonContainer">
-          <div id="wireButton" class="button">Wire</div>
-          <div id="batteryButton" class="button">Battery</div>
-          <div id="generatorButton" class="button">Particles Generator</div>
-          <div id="ledButton" class="button">LED</div>
-        </div>
-      </details>
-
-      <!-- tools -->
-      <details>
-        <summary>Tools</summary>
-        <div class="individualButtonContainer">
-          <div id="eraserButton" class="button">Eraser</div>
-          <div id="clearButton" class="button">Clear</div>
-        </div>
-      </details>
+  <head>
+    <title>ElementBox</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="assets/ELEMENTBOXLOGO.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div id="top">
+      <h1>ElementBox</h1>
     </div>
-    <canvas id="canvas"></canvas>
-  </div>
-  <footer>
-    <p>ElementBox by <a href="https://github.com/claquettes">Claquettes</a></p>
-  </footer>
+    <div id="mainContainer">
+      <div id="colorButtons">
+        <!-- solids -->
+        <details>
+          <summary>Solids</summary>
+          <div class="individualButtonContainer">
+            <div id="greyButton" class="button">Beton</div>
+            <div id="stoneButton" class="button">Stone</div>
+            <div id="iceButton" class="button">Ice</div>
+          </div>
+        </details>
+        <!-- liquids -->
+        <details>
+          <summary>Liquids</summary>
+          <div class="individualButtonContainer">
+            <div id="waterButton" class="button">Water</div>
+            <div id="lavaButton" class="button">Lava</div>
+            <div id="acidButton" class="button">Acid</div>
+            <div id="oilButton" class="button">Oil</div>
+          </div>
+        </details>
 
-  <script src="src/buttons.js"></script>
-  <script src="src/interactions/fire.js"></script>
-  <script src="src/interactions/ignitionSources.js"></script>
-  <script src="src/interactions/gases.js"></script>
-  <script src="src/interactions/explosions.js"></script>
-  <script src="src/interactions/ice.js"></script>
-  <script src="src/interactions/lava.js"></script>
-  <script src="src/interactions/sand.js"></script>
-  <script src="src/interactions/liquid.js"></script>
-  <script src="src/interactions/particleGenerator.js"></script>
-  <script src="src/interactions/acid.js"></script>
-  <script src="src/interactions/electricity.js"></script>
-  <script src="src/colorsConstants.js"></script>
-  <script src="src/drawGrid.js"></script>
-  <script src="script.js"></script>
-</body>
+        <!-- elements -->
+        <details>
+          <summary>Elements</summary>
+          <div class="individualButtonContainer">
+            <div id="coalButton" class="button">Coal</div>
+          </div>
+        </details>
+
+        <!-- powders -->
+        <details>
+          <summary>Powders</summary>
+          <div class="individualButtonContainer">
+            <div id="greenButton" class="button">Green</div>
+            <div id="redButton" class="button">Red</div>
+            <div id="sandButton" class="button">Sand</div>
+            <div id="freezePowderButton" class="button">Freeze Powder</div>
+          </div>
+        </details>
+        <!-- gasses -->
+        <details>
+          <summary>Gasses</summary>
+          <div class="individualButtonContainer">
+            <div id="steamButton" class="button">Steam</div>
+            <div id="smokeButton" class="button">Smoke</div>
+          </div>
+        </details>
+
+        <details>
+          <summary>Explosives</summary>
+          <div class="individualButtonContainer">
+            <div id="fireButton" class="button">Fire</div>
+            <div id="gunpowderButton" class="button">Gunpowder</div>
+            <div id="tntButton" class="button">TNT</div>
+            <div id="dynamiteButton" class="button">Dynamite</div>
+            <div id="c4Button" class="button">C4</div>
+          </div>
+        </details>
+
+        <!-- other -->
+        <details>
+          <summary>Electronics</summary>
+          <div class="individualButtonContainer">
+            <div id="wireButton" class="button">Wire</div>
+            <div id="batteryButton" class="button">Battery</div>
+            <div id="generatorButton" class="button">Particles Generator</div>
+            <div id="ledButton" class="button">LED</div>
+          </div>
+        </details>
+
+        <!-- tools -->
+        <details>
+          <summary>Tools</summary>
+          <div class="individualButtonContainer">
+            <div id="eraserButton" class="button">Eraser</div>
+            <div id="clearButton" class="button">Clear</div>
+          </div>
+        </details>
+      </div>
+      <canvas id="canvas"></canvas>
+      <div class="left">
+        <label for="gridSizeInput">Grid Size:</label>
+        <input type="number" id="gridSizeInput" min="10" max="75" value="30">
+        <span id="changeSizeButton">Change</span>
+      </div>
+    </div>
+    <footer>
+      <p>
+        ElementBox by <a href="https://github.com/claquettes">Claquettes</a>
+      </p>
+    </footer>
+
+    <script src="src/buttons.js"></script>
+    <script src="src/interactions/fire.js"></script>
+    <script src="src/interactions/ignitionSources.js"></script>
+    <script src="src/interactions/gases.js"></script>
+    <script src="src/interactions/explosions.js"></script>
+    <script src="src/interactions/ice.js"></script>
+    <script src="src/interactions/lava.js"></script>
+    <script src="src/interactions/sand.js"></script>
+    <script src="src/interactions/liquid.js"></script>
+    <script src="src/interactions/particleGenerator.js"></script>
+    <script src="src/interactions/acid.js"></script>
+    <script src="src/interactions/electricity.js"></script>
+    <script src="src/colorsConstants.js"></script>
+    <script src="src/drawGrid.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>

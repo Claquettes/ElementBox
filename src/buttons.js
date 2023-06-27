@@ -1,3 +1,4 @@
+const changeSizeButton = document.getElementById("changeSizeButton");
 const redButton = document.getElementById("redButton");
 const greenButton = document.getElementById("greenButton");
 const waterButton = document.getElementById("waterButton");
@@ -23,6 +24,7 @@ const gunpowderButton = document.getElementById("gunpowderButton");
 const fireButton = document.getElementById("fireButton");
 const ledButton = document.getElementById("ledButton");
 const oilButton = document.getElementById("oilButton");
+
 
 redButton.addEventListener("click", () => setCurrentColor("red"));
 greenButton.addEventListener("click", () => setCurrentColor("green"));
@@ -56,3 +58,4 @@ gunpowderButton.addEventListener("click", () => setCurrentColor("gunpowder"));
 fireButton.addEventListener("click", () => setCurrentColor("fire"));
 ledButton.addEventListener("click", () => setCurrentColor("led"));
 oilButton.addEventListener("click", () => setCurrentColor("oil"));
+changeSizeButton.addEventListener("click", () => changeSize());
