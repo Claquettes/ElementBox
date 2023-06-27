@@ -2,12 +2,15 @@ function applyExplosion(i, j, explosiveType) {
   let explosionRadius = 0;
   switch (explosiveType) {
     case "tnt":
-      explosionRadius = 4;
+      explosionRadius = 2;
+      break;
+    case "dynamite":
+      explosionRadius = 3;
       break;
   }
-  
+
   let tilesInExplosionRadius = [];
-  
+
   if (i - explosionRadius < 0) {
     explosionRadius = i;
   }
@@ -20,14 +23,18 @@ function applyExplosion(i, j, explosiveType) {
   if (j + explosionRadius > grid[0].length - 1) {
     explosionRadius = grid[0].length - 1 - j;
   }
-  
+
   for (let k = i - explosionRadius; k <= i + explosionRadius; k++) {
     for (let l = j - explosionRadius; l <= j + explosionRadius; l++) {
       tilesInExplosionRadius.push([k, l]);
-      
+
       if (k === i && l === j) {
         // Explode the explosive tile itself
         grid[k][l] = "";
+        //if the tile above is empty, generate a smoke tile
+        if (grid[k - 1][l] === "") {
+          grid[k - 1][l] = "smoke";
+        }
       } else if (grid[k][l] === explosiveType) {
         // Trigger chain reaction for explosive tiles within the radius
         applyExplosion(k, l, explosiveType);

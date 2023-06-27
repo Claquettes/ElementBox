@@ -16,7 +16,7 @@ const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
 const liquids = ["water", "lava", "acid", "electrifiedWater"]; // Added 'electrifiedWater' liquid
 const solids = ["stone", "grey", "ice"];
 const electronics = ["generator", "battery", "wire", "electrifiedWire"]; // Added 'electrifiedWire' electronics
-const explosives = ["tnt"];
+const explosives = ["tnt", "dynamite", "c4"];
 
 // Initialize grid
 const grid = [];
