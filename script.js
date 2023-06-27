@@ -221,69 +221,11 @@ function applyGravity() {
         }
         //if the tile is lava
         if (grid[i][j] === "lava") {
-          //any water tile adjacent to the lava tile becomes stone
-          if (grid[i + 1][j] === "water") {
-            grid[i + 1][j] = "stone";
-            //we generate steam on top of the lava
-            grid[i - 1][j] = "steam";
-          }
-          if (grid[i - 1][j] === "water") {
-            grid[i - 1][j] = "stone";
-          }
-          if (grid[i][j + 1] === "water") {
-            grid[i][j + 1] = "stone";
-          }
-          if (grid[i][j - 1] === "water") {
-            grid[i][j - 1] = "stone";
-          }
+          lavaInteraction(i, j);
         }
         //if the tile is freezePowder or ice
         if (grid[i][j] === "freezePowder" || grid[i][j] === "ice") {
-          if (Math.random() > 0.7) {
-            // 50% chance to become ice
-            //any water tile adjacent to the freezePowder or ice tile becomes ice
-            if (grid[i + 1][j] === "water") {
-              grid[i + 1][j] = "ice";
-              grid[i][j] = "ice";
-            }
-            if (grid[i - 1][j] === "water") {
-              grid[i - 1][j] = "ice";
-              grid[i][j] = "ice";
-            }
-            if (grid[i][j + 1] === "water") {
-              grid[i][j + 1] = "ice";
-              grid[i][j] = "ice";
-            }
-            if (grid[i][j - 1] === "water") {
-              grid[i][j - 1] = "ice";
-              grid[i][j] = "ice";
-            }
-          }
-          //in contact with lava, will become stone and generate steam
-          if (grid[i + 1][j] === "lava") {
-            grid[i][j] = "stone";
-            if (grid[i - 1][j] === "") {
-              grid[i - 1][j] = "steam";
-            }
-          }
-          if (grid[i - 1][j] === "lava") {
-            grid[i][j] = "stone";
-            if (grid[i + 1][j] === "") {
-              grid[i + 1][j] = "steam";
-            }
-          }
-          if (grid[i][j + 1] === "lava") {
-            grid[i][j] = "stone";
-            if (grid[i][j - 1] === "") {
-              grid[i][j - 1] = "steam";
-            }
-          }
-          if (grid[i][j - 1] === "lava") {
-            grid[i][j] = "stone";
-            if (grid[i][j + 1] === "") {
-              grid[i][j + 1] = "steam";
-            }
-          }
+          iceInteraction(i, j);
         }
         //if the tile is a generator
         if (grid[i][j] === "electrifiedGenerator") {
