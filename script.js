@@ -173,45 +173,7 @@ function applyGravity() {
         }
         //if a water tile is ON TOP of a water tile
         if (grid[i][j] === "water" && grid[i + 1][j] === "water") {
-          console.log("water on water");
-          //the tile on the top becomes empty
-          grid[i][j] = "";
-          //we check if the diagonal tiles are empty below
-          if (grid[i + 1][j + 1] === "" && grid[i + 1][j - 1] === "") {
-            //if they are empty, we put a water tile on 50% right or left
-            if (Math.random() > 0.5) {
-              grid[i + 1][j + 1] = "water";
-              console.log("water on water on water right");
-            } else {
-              grid[i + 1][j - 1] = "water";
-              console.log("water on water on water left");
-            }
-          } else if (grid[i + 1][j + 1] === "" && grid[i + 1][j - 1] !== "") {
-            grid[i + 1][j + 1] = "water";
-            console.log("water on water on water right 1");
-          } else if (grid[i + 1][j + 1] !== "" && grid[i + 1][j - 1] === "") {
-            grid[i + 1][j - 1] = "water";
-            console.log("water on water on water left 2");
-          }
-          //if the diagonal tiles are not empty, we check if the tile directly on the right is empty; and the left is empty
-          else if (grid[i][j + 1] === "" && grid[i][j - 1] === "") {
-            //if they are empty, we put a water tile on 50% right or left
-            if (Math.random() > 0.5) {
-              grid[i][j + 1] = "water";
-              console.log("water on water on water right 3");
-            } else {
-              grid[i][j - 1] = "water";
-              console.log("water on water on water left 4");
-            }
-          } else if (grid[i][j + 1] === "" && grid[i][j - 1] !== "") {
-            grid[i][j + 1] = "water";
-            console.log("water on water on water right 5");
-          } else if (grid[i][j + 1] !== "" && grid[i][j - 1] === "") {
-            grid[i][j - 1] = "water";
-            console.log("water on water on water left 6");
-          } else {
-            grid[i][j] = "water";
-          }
+          liquidInteraction(i, j);
         }
         //if a sand tile is ON TOP of a water tile
         if (grid[i][j] === "sand" && grid[i + 1][j] === "water") {
