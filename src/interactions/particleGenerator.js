@@ -44,5 +44,20 @@ function particleGenerator(i, j) {
       grid[i + 1][j] =
         adjacentTiles[Math.floor(Math.random() * adjacentTiles.length)];
     }
+    //if we can't generate a tile below the generator, we generate a tile on the left of the generator
+    else if (grid[i][j - 1] === "") {
+      grid[i][j - 1] =
+        adjacentTiles[Math.floor(Math.random() * adjacentTiles.length)];
+    }
+    //if we can't generate a tile on the left of the generator, we generate a tile on the right of the generator
+    else if (grid[i][j + 1] === "") {
+      grid[i][j + 1] =
+        adjacentTiles[Math.floor(Math.random() * adjacentTiles.length)];
+    }
+    //if we can't generate a tile on the right of the generator, we generate a tile above the generator
+    else if (grid[i - 1][j] === "") {
+      grid[i - 1][j] =
+        adjacentTiles[Math.floor(Math.random() * adjacentTiles.length)];
+    }
   }
 }
