@@ -13,6 +13,7 @@ const numCols = Math.ceil(canvasSize / gridSize);
 const numRows = Math.ceil(canvasSize / gridSize);
 
 const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
+const liquids = ["water", "lava", "acid", "electrifiedWater"]; // Added 'electrifiedWater' liquid
 
 // Initialize grid
 const grid = [];
@@ -171,9 +172,10 @@ function applyGravity() {
           grid[i + 1][j] = grid[i][j];
           grid[i][j] = "";
         }
-        //if a water tile is ON TOP of a water tile
-        if (grid[i][j] === "water" && grid[i + 1][j] === "water") {
-          liquidInteraction(i, j);
+        //if a tile that is on the liquid list is on top of a tile that is on the liquid list
+        if (liquids.includes(grid[i][j]) && liquids.includes(grid[i + 1][j])) {
+          tileType = grid[i][j];
+          liquidInteraction(i, j, tileType);
         }
         //if a sand tile is ON TOP of a water tile
         if (grid[i][j] === "sand" && grid[i + 1][j] === "water") {
