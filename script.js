@@ -15,9 +15,10 @@ const numRows = Math.ceil(canvasSize / gridSize);
 const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
 const liquids = ["water", "lava", "acid", "electrifiedWater"]; // Added 'electrifiedWater' liquid
 const solids = ["stone", "grey", "ice"];
-const electronics = ["generator", "battery", "wire", "electrifiedWire"]; // Added 'electrifiedWire' electronics
+const electronics = ["generator", "battery", "wire", "electrifiedWire"]; 
 const explosives = ["tnt", "dynamite", "c4", "gunpowder"];
 const gases = ["steam", "smoke"];
+const ignitionSources = ["fire", "lava", "battery", "electrifiedWire"]; 
 
 // Initialize grid
 const grid = [];
@@ -95,6 +96,11 @@ function applyGravity() {
         if (liquids.includes(grid[i][j]) && liquids.includes(grid[i + 1][j])) {
           tileType = grid[i][j];
           liquidInteraction(i, j, tileType);
+        }
+        //if a tile is in the ingitionSources list
+        if (ignitionSources.includes(grid[i][j])) {
+          let ignitionType = grid[i][j];
+          ignitionInteraction(i, j, ignitionType);
         }
         //if a sand tile is ON TOP of a liquid tile
         if (grid[i][j] === "sand" && liquids.includes(grid[i + 1][j])) {

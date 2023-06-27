@@ -71,35 +71,12 @@ function drawGrid() {
           case "smoke":
             ctx.fillStyle = smokeColor;
             break;
-
           case "dynamite":
-            ctx.fillStyle = dynamiteFirstColor;
-            //we render all of the tile in red
-            ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
-            //we render the 3 white lines
-            ctx.fillStyle = dynamiteSecondColor;
-            ctx.fillRect(j * gridSize + 5, i * gridSize + 5, gridSize - 10, 5);
-            ctx.fillRect(j * gridSize + 5, i * gridSize + 10, 5, gridSize - 20);
-            ctx.fillRect(
-              j * gridSize + 5,
-              i * gridSize + gridSize - 10,
-              gridSize - 10,
-              5
-            );
+            renderDynamite(i, j);
             specialrender = true;
             break;
           case "gunpowder":
-            ctx.fillStyle = gunpowderFirstColor;
-            //we render all of the tile in the first color
-            ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
-            //we render 3 white dots in the middle of the tile
-            ctx.fillStyle = gunpowderSecondColor;
-            ctx.fillRect(
-              j * gridSize + gridSize / 2 - 2,
-              i * gridSize + gridSize / 2 - 2,
-              4,
-              4
-            );
+            renderGunPowder(i, j);
             specialrender = true;
             break;
         }
@@ -110,4 +87,34 @@ function drawGrid() {
       }
     }
   }
+}
+
+function renderGunPowder(i, j) {
+  ctx.fillStyle = gunpowderFirstColor;
+  //we render all of the tile in the first color
+  ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+  //we render 3 white dots in the middle of the tile
+  ctx.fillStyle = gunpowderSecondColor;
+  ctx.fillRect(
+    j * gridSize + gridSize / 2 - 2,
+    i * gridSize + gridSize / 2 - 2,
+    4,
+    4
+  );
+}
+
+function renderDynamite(i, j) {
+  ctx.fillStyle = dynamiteFirstColor;
+  //we render all of the tile in red
+  ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+  //we render the 3 white lines
+  ctx.fillStyle = dynamiteSecondColor;
+  ctx.fillRect(j * gridSize + 5, i * gridSize + 5, gridSize - 10, 5);
+  ctx.fillRect(j * gridSize + 5, i * gridSize + 10, 5, gridSize - 20);
+  ctx.fillRect(
+    j * gridSize + 5,
+    i * gridSize + gridSize - 10,
+    gridSize - 10,
+    5
+  );
 }
