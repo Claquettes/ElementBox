@@ -25,6 +25,7 @@ const explosives = ["tnt", "dynamite", "c4", "gunpowder", "oil"];
 const gases = ["steam", "smoke"];
 const ignitionSources = ["fire", "lava", "battery", "electrifiedWire"]; 
 const notAffectedByGravity = ["fire"];
+const electrifiedTiles = ["electrifiedWater", "electrifiedWire", "electrifiedLed", "battery", "electrifiedGenerator"]; // Added 'electrifiedLed' tile
 
 // Initialize grid
 const grid = [];
@@ -40,7 +41,7 @@ for (let i = 0; i < numRows; i++) {
 let isMouseDown = false;
 let currentColor = "red";
 
-// Event listeners
+// Event   listeners
 canvas.addEventListener("mousedown", handleMouseDown);
 canvas.addEventListener("mouseup", handleMouseUp);
 canvas.addEventListener("mousemove", handleMouseMove);
@@ -133,6 +134,9 @@ function applyGravity() {
         //if the tile is fire
         if (grid[i][j] === "fire") {
           fireInteraction(i, j);
+        }
+        if(grid[i][j] === "ANDGate"){
+          ANDGateInteraction(i, j);
         }
 
         calculateElectricity(i, j);
