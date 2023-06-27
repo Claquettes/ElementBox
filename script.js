@@ -95,6 +95,9 @@ function drawGrid() {
           case "electrifiedWire":
             ctx.fillStyle = electrifiedWireColor;
             break;
+          case "electrifiedGenerator":
+            ctx.fillStyle = electrifiedGeneratorColor;
+            break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }
@@ -161,7 +164,7 @@ function applyGravity() {
           //we do not apply gravity to solid tiles, nor electronics
           grid[i][j] !== "generator" &&
           grid[i][j] !== "battery" &&
-          grid[i][j] !== "wire" && grid[i][j] !== "electrifiedWire"
+          grid[i][j] !== "wire" && grid[i][j] !== "electrifiedWire" && grid[i][j] !== "electrifiedGenerator" && grid[i][j] !== "electrifiedWater"
            
         ) {
           grid[i + 1][j] = grid[i][j];
@@ -283,20 +286,20 @@ function applyGravity() {
           }
         }
         //if the tile is a generator
-        if (grid[i][j] === "generator") {
+        if (grid[i][j] === "electrifiedGenerator") {
           //we generate a tile below the generator/ the tile generated is of the type as one of the 4 tiles adjacent to the generator
           //we check the 4 tiles adjacent to the generator
           let adjacentTiles = [];
-          if (grid[i + 1][j] !== "" && grid[i + 1][j] !== "generator" && grid[i + 1][j] !== "wire") {
+          if (grid[i + 1][j] !== "" && grid[i + 1][j] !== "generator" && grid[i + 1][j] !== "wire" && grid[i + 1][j] !== "electrifiedGenerator" && grid[i + 1][j] !== "electrifiedWire") {
             adjacentTiles.push(grid[i + 1][j]);
           }
-          if (grid[i - 1][j] !== "" && grid[i - 1][j] !== "generator" && grid[i - 1][j] !== "wire") {
+          if (grid[i - 1][j] !== "" && grid[i - 1][j] !== "generator" && grid[i - 1][j] !== "wire" && grid[i - 1][j] !== "electrifiedGenerator" && grid[i - 1][j] !== "electrifiedWire") {
             adjacentTiles.push(grid[i - 1][j]);
           }
-          if (grid[i][j + 1] !== "" && grid[i][j + 1] !== "generator" && grid[i][j + 1] !== "wire") {
+          if (grid[i][j + 1] !== "" && grid[i][j + 1] !== "generator" && grid[i][j + 1] !== "wire" && grid[i][j + 1] !== "electrifiedGenerator" && grid[i][j + 1] !== "electrifiedWire") {
             adjacentTiles.push(grid[i][j + 1]);
           }
-          if (grid[i][j - 1] !== "" && grid[i][j - 1] !== "generator" && grid[i][j - 1] !== "wire") {
+          if (grid[i][j - 1] !== "" && grid[i][j - 1] !== "generator" && grid[i][j - 1] !== "wire" && grid[i][j - 1] !== "electrifiedGenerator" && grid[i][j - 1] !== "electrifiedWire") {
             adjacentTiles.push(grid[i][j - 1]);
           }
           //we generate a tile below the generator
@@ -365,16 +368,44 @@ function calculateElectricity(i, j) {
     } 
     // Check if there is electrified water, electrified wire, or a battery in the adjacent tiles
     const hasElectricity = adjacentTilesForElectricity.some(tile => tile === "electrifiedWater" || tile === "electrifiedWire" || tile === "battery");
-    // Transform the tile accordingly
-    if (grid[i][j] === "water") {
-      grid[i][j] = hasElectricity ? "electrifiedWater" : "water";
+    
+    // Transform the tile accordingly to the electricity
+    switch (grid[i][j]) {
+      case "water":
+        if (hasElectricity) {
+          grid[i][j] = "electrifiedWater";
+        }
+        break;
+      case "wire":
+        if (hasElectricity) {
+          grid[i][j] = "electrifiedWire";
+        }
+        break;
+      case "generator":
+        if (hasElectricity) {
+          grid[i][j] = "electrifiedGenerator";
+        }
+        break;
+        case "electrifiedWater":
+          if (!hasElectricity) {
+            grid[i][j] = "water";
+          }
+          break;
+        case "electrifiedWire":
+          if (!hasElectricity) {
+            grid[i][j] = "wire";
+          }
+          break;
+        case "electrifiedGenerator":
+          if (!hasElectricity) {
+            grid[i][j] = "generator";
+          }
+          break;
     }
-    if (grid[i][j] === "wire") {
-      grid[i][j] = hasElectricity ? "electrifiedWire" : "wire";
-    }    
   }
 }
 
+    
 
 
 
