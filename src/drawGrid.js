@@ -105,16 +105,18 @@ function renderGunPowder(i, j) {
 
 function renderDynamite(i, j) {
   ctx.fillStyle = dynamiteFirstColor;
-  //we render all of the tile in red
+  // Render the entire tile in dynamiteFirstColor
   ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
-  //we render the 3 white lines
+
   ctx.fillStyle = dynamiteSecondColor;
-  ctx.fillRect(j * gridSize + 5, i * gridSize + 5, gridSize - 10, 5);
-  ctx.fillRect(j * gridSize + 5, i * gridSize + 10, 5, gridSize - 20);
-  ctx.fillRect(
-    j * gridSize + 5,
-    i * gridSize + gridSize - 10,
-    gridSize - 10,
-    5
-  );
+  // Draw 5 white vertical lines in dynamiteSecondColor
+  const lineOffset = gridSize / 5; // Adjust this value to change the spacing between the lines
+  const lineX = j * gridSize + lineOffset;
+  const lineY = i * gridSize;
+  const lineLength = gridSize - lineOffset * 2;
+  const lineSpacing = lineLength / 4; // Adjust this value to change the spacing between the lines
+
+  for (let k = 0; k < 3; k++) {
+    ctx.fillRect(lineX + k * lineSpacing, lineY, 2, gridSize);
+  }
 }
