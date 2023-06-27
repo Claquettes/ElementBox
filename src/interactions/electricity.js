@@ -1,4 +1,5 @@
 function calculateElectricity(i, j) {
+  let hasElectricity = false;
   if (i === 0 || j === 0 || i === grid.length - 1 || j === grid[0].length - 1) {
     return;
   } else {
@@ -15,14 +16,14 @@ function calculateElectricity(i, j) {
     if (grid[i][j - 1] !== "") {
       adjacentTilesForElectricity.push(grid[i][j - 1]);
     }
-    // Check if there is electrified water, electrified wire, or a battery in the adjacent tiles
-    const hasElectricity = adjacentTilesForElectricity.some(
-      (tile) =>
-        tile === "electrifiedWater" ||
-        tile === "electrifiedWire" ||
-        tile === "battery"
-    );
-
+    for (let k = 0; k < adjacentTilesForElectricity.length; k++) {
+      //we check if the tile is in the electrifiedTiles array
+      if (electrifiedTiles.includes(adjacentTilesForElectricity[k])) {
+        hasElectricity = true;
+        break;
+      }
+    }
+    if(hasElectricity){
     // Transform the tile accordingly to the electricity
     switch (grid[i][j]) {
       case "water":
@@ -60,6 +61,7 @@ function calculateElectricity(i, j) {
           grid[i][j] = "electrifiedLed";
         }
         break;
+      }
     }
   }
 }

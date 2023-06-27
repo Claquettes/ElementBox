@@ -92,12 +92,14 @@ function drawGrid() {
           case "oil":
             ctx.fillStyle = oilColor;
             break;
-            case "ANDGate":
-              renderAND(i, j);
-              specialrender = true;
-              break;
-              
-            
+          case "ANDGate":
+            renderAND(i, j);
+            specialrender = true;
+            break;
+          case "electrifiedANDGate":
+            renderAND(i, j);
+            specialrender = true;
+            break;
         }
         if (!specialrender) {
           ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
@@ -141,9 +143,9 @@ function renderDynamite(i, j) {
 }
 
 function renderAND(i, j) {
-  const tileColor = 'grey';
-  const dotColor = 'blue';
-  const redDotColor = 'red';
+  const tileColor = "grey";
+  const dotColor = "blue";
+  const redDotColor = "red";
 
   // Render the entire tile in tileColor
   ctx.fillStyle = tileColor;
@@ -160,7 +162,7 @@ function renderAND(i, j) {
   ctx.lineTo(triangleX - triangleSize / 2, triangleY + triangleSize / 2);
   ctx.closePath();
 
-  ctx.fillStyle = 'black'; // Adjust this color to change the color of the triangle
+  ctx.fillStyle = "black"; // Adjust this color to change the color of the triangle
   ctx.fill();
 
   // Draw the red dot on the right of the tile
@@ -191,8 +193,6 @@ function renderAND(i, j) {
   ctx.closePath();
   ctx.fill();
 }
-
-
 
 function renderFire(i, j) {
   const fireColors = ["#FF3300", "#FF6600", "#FF9900", "#FFCC00", "#FFCC33"];
