@@ -1,4 +1,5 @@
 function applyGasesGravity (i, j, type){
+    if(grid[i - 1][j] === ""){
     if (i - 1 > 0) {
         //10% chance to go up
         if (Math.random() > 0.667) {
@@ -8,4 +9,5 @@ function applyGasesGravity (i, j, type){
       } else {
         grid[i][j] = "";
       }
+    }
 }
