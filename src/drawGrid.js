@@ -89,6 +89,10 @@ function drawGrid() {
           case "electrifiedLed":
             ctx.fillStyle = electrifiedLedColor;
             break;
+          case "oil":
+            ctx.fillStyle = oilColor;
+            break;
+            
         }
         if (!specialrender) {
           ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);

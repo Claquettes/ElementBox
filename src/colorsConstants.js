@@ -22,6 +22,7 @@ const smokeColor = "#434744";
 const gunpowderFirstColor = "#403d3b";
 const gunpowderSecondColor = "#ffffff";
 const ledColor = "#004500"
+const oilColor = "#19300e";
 
 //Electrified version of the colors (for the electrified version of the elements)
 const electrifiedWaterColor = "#619eff";

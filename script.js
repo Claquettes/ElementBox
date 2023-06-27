@@ -13,10 +13,10 @@ const numCols = Math.ceil(canvasSize / gridSize);
 const numRows = Math.ceil(canvasSize / gridSize);
 
 const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
-const liquids = ["water", "lava", "acid", "electrifiedWater"]; // Added 'electrifiedWater' liquid
+const liquids = ["water", "lava", "acid", "electrifiedWater", "oil"]; // Added 'electrifiedWater' liquid
 const solids = ["stone", "grey", "ice"];
 const electronics = ["generator", "battery", "wire", "electrifiedWire", "led", "electrifiedLed"]; // Added 'led' electronic
-const explosives = ["tnt", "dynamite", "c4", "gunpowder"];
+const explosives = ["tnt", "dynamite", "c4", "gunpowder", "oil"];
 const gases = ["steam", "smoke"];
 const ignitionSources = ["fire", "lava", "battery", "electrifiedWire"]; 
 const notAffectedByGravity = ["fire"];
@@ -94,16 +94,17 @@ function applyGravity() {
           grid[i + 1][j] = grid[i][j];
           grid[i][j] = "";
         }
-        //if a tile that is on the liquid list is on top of a tile that is on the liquid list
-        if (liquids.includes(grid[i][j]) && liquids.includes(grid[i + 1][j])) {
-          tileType = grid[i][j];
-          liquidInteraction(i, j, tileType);
-        }
         //if a tile is in the ingitionSources list
         if (ignitionSources.includes(grid[i][j])) {
           let ignitionType = grid[i][j];
           ignitionInteraction(i, j, ignitionType);
         }
+        //if a tile that is on the liquid list is on top of a tile that is on the liquid list
+        if (liquids.includes(grid[i][j]) && liquids.includes(grid[i + 1][j])) {
+          tileType = grid[i][j];
+          liquidInteraction(i, j, tileType);
+        }
+        
         //if a sand tile is ON TOP of a liquid tile
         if (grid[i][j] === "sand" && liquids.includes(grid[i + 1][j])) {
           sandInteraction(i, j);
@@ -124,6 +125,11 @@ function applyGravity() {
         if (grid[i][j] === "acid") {
           acidInteraction(i, j);
         }
+        //if the tile is fire
+        if (grid[i][j] === "fire") {
+          fireInteraction(i, j);
+        }
+
         calculateElectricity(i, j);
       }
     }
