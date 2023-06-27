@@ -61,6 +61,9 @@ function drawGrid() {
           case "electrifiedGenerator":
             ctx.fillStyle = electrifiedGeneratorColor;
             break;
+          case "tnt":
+            ctx.fillStyle = tntColor;
+            break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }

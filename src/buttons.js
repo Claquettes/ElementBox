@@ -13,6 +13,7 @@ const acidButton = document.getElementById("acidButton");
 const generatorButton = document.getElementById("generatorButton");
 const batteryButton = document.getElementById("batteryButton");
 const wireButton = document.getElementById("wireButton");
+const tntButton = document.getElementById("tntButton");
 
 const eraserButton = document.getElementById("eraserButton");
 const clearButton = document.getElementById("clearButton");
@@ -34,7 +35,7 @@ acidButton.addEventListener("click", () => setCurrentColor("acid"));
 generatorButton.addEventListener("click", () => setCurrentColor("generator"));
 batteryButton.addEventListener("click", () => setCurrentColor("battery"));
 wireButton.addEventListener("click", () => setCurrentColor("wire"));
-
+tntButton.addEventListener("click", () => setCurrentColor("tnt"));
 eraserButton.addEventListener("click", () => setCurrentColor(""));
 clearButton.addEventListener("click", () => {
   for (let i = 0; i < grid.length; i++) {
