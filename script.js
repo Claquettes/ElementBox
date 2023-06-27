@@ -101,8 +101,8 @@ function applyGravity() {
           tileType = grid[i][j];
           liquidInteraction(i, j, tileType);
         }
-        //if a sand tile is ON TOP of a water tile
-        if (grid[i][j] === "sand" && grid[i + 1][j] === "water") {
+        //if a sand tile is ON TOP of a liquid tile
+        if (grid[i][j] === "sand" && liquids.includes(grid[i + 1][j])) {
           sandInteraction(i, j);
         }
         //if the tile is lava
