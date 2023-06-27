@@ -89,6 +89,12 @@ function drawGrid() {
           case "wire":
             ctx.fillStyle = wireColor;
             break;
+          case "electrifiedWater":
+            ctx.fillStyle = electrifiedWaterColor;
+            break;
+          case "electrifiedWire":
+            ctx.fillStyle = electrifiedWireColor;
+            break;
         }
         ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
       }
@@ -123,6 +129,8 @@ function handleMouseMove(event) {
         if (grid[row][col] === "") {
           grid[row][col] = currentColor;
         }
+        //else we console.log the type of the tile
+        else(console.log(grid[row][col]));
       }
     }
   }
@@ -153,7 +161,7 @@ function applyGravity() {
           //we do not apply gravity to solid tiles, nor electronics
           grid[i][j] !== "generator" &&
           grid[i][j] !== "battery" &&
-          grid[i][j] !== "wire"
+          grid[i][j] !== "wire" && grid[i][j] !== "electrifiedWire"
            
         ) {
           grid[i + 1][j] = grid[i][j];
@@ -316,7 +324,14 @@ function applyGravity() {
           if (grid[i][j - 1] !== "acid" && grid[i][j - 1] !== "stone" && grid[i][j - 1] !== "") {
             grid[i][j - 1] = "";
           }
-        }}
+          }
+        }
+        
+        calculateElectricity(i, j);
+
+
+
+
       }
     }
   }
@@ -330,6 +345,39 @@ function setCurrentColor(color) {
     currentColor = color;
   }
 }
+
+function calculateElectricity(i, j) {
+  if (i === 0 || j === 0 || i === grid.length - 1 || j === grid[0].length - 1) {
+    return;
+  } else {
+    let adjacentTilesForElectricity = [];
+    if (grid[i + 1][j] !== "") {
+      adjacentTilesForElectricity.push(grid[i + 1][j]);
+    }
+    if (grid[i - 1][j] !== "") {
+      adjacentTilesForElectricity.push(grid[i - 1][j]);
+    }
+    if (grid[i][j + 1] !== "") {
+      adjacentTilesForElectricity.push(grid[i][j + 1]);
+    }
+    if (grid[i][j - 1] !== "") {
+      adjacentTilesForElectricity.push(grid[i][j - 1]);
+    } 
+    // Check if there is electrified water, electrified wire, or a battery in the adjacent tiles
+    const hasElectricity = adjacentTilesForElectricity.some(tile => tile === "electrifiedWater" || tile === "electrifiedWire" || tile === "battery");
+    // Transform the tile accordingly
+    if (grid[i][j] === "water") {
+      grid[i][j] = hasElectricity ? "electrifiedWater" : "water";
+    }
+    if (grid[i][j] === "wire") {
+      grid[i][j] = hasElectricity ? "electrifiedWire" : "wire";
+    }    
+  }
+}
+
+
+
+
 
 function update() {
   applyGravity();
