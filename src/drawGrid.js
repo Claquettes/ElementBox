@@ -100,6 +100,10 @@ function drawGrid() {
             renderAND(i, j);
             specialrender = true;
             break;
+          case "nuclearBomb":
+            ctx.fillStyle = nuclearBombColor;
+            break;
+        
         }
         if (!specialrender) {
           ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);

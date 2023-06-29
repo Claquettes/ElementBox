@@ -14,6 +14,7 @@ const generatorColor = "#5e345e";
 const batteryColor = "#9dfc03";
 const wireColor = "#4a2d16";
 const tntColor = "#ff0000";
+const nuclearBombColor = "#00ff00";
 //dynamite colors:
 const dynamiteFirstColor = "#ff0000";
 const dynamiteSecondColor = "#ffffff";

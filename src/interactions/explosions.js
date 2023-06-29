@@ -13,6 +13,9 @@ function applyExplosion(i, j, explosiveType) {
     case "c4":
       explosionRadius = 4;
       break;
+    case "nuclearBomb":
+      explosionRadius = 10;
+      break;
   }
 
   let tilesInExplosionRadius = [];
@@ -33,7 +36,7 @@ function applyExplosion(i, j, explosiveType) {
   for (let k = i - explosionRadius; k <= i + explosionRadius; k++) {
     for (let l = j - explosionRadius; l <= j + explosionRadius; l++) {
       tilesInExplosionRadius.push([k, l]);
-    
+
       if (k === i && l === j) {
         // Explode the explosive tile itself
         grid[k][l] = "";
@@ -60,4 +63,3 @@ function generateSmokeFromExplosion(i, j) {
     grid[i - 2][j + 1] = "smoke";
   }
 }
-

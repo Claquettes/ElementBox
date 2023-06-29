@@ -4,24 +4,14 @@ function calculateElectricity(i, j) {
     return;
   } else {
     let adjacentTilesForElectricity = [];
-    if (grid[i + 1][j] !== "") {
-      adjacentTilesForElectricity.push(grid[i + 1][j]);
-    }
-    if (grid[i - 1][j] !== "") {
-      adjacentTilesForElectricity.push(grid[i - 1][j]);
-    }
-    if (grid[i][j + 1] !== "") {
-      adjacentTilesForElectricity.push(grid[i][j + 1]);
-    }
-    if (grid[i][j - 1] !== "") {
-      adjacentTilesForElectricity.push(grid[i][j - 1]);
-    }
+    //we call the adjacent4Tiles function to get the 4 adjacent tiles
+    adjacentTilesForElectricity = adjacent4Tiles(i, j, adjacentTilesForElectricity);
     for (let k = 0; k < adjacentTilesForElectricity.length; k++) {
       //we check if the tile is in the electrifiedTiles array
       if (electrifiedTiles.includes(adjacentTilesForElectricity[k])) {
         //we if the electrified tile is still electrified
         hasElectricity = true;
-        
+
       }
     }
     if(hasElectricity){
