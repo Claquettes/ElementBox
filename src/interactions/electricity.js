@@ -19,8 +19,9 @@ function calculateElectricity(i, j) {
     for (let k = 0; k < adjacentTilesForElectricity.length; k++) {
       //we check if the tile is in the electrifiedTiles array
       if (electrifiedTiles.includes(adjacentTilesForElectricity[k])) {
+        //we if the electrified tile is still electrified
         hasElectricity = true;
-        break;
+        
       }
     }
     if(hasElectricity){
