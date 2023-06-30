@@ -3,15 +3,15 @@ let electricalPotential;
 
 // Initialize electrical potential grid with default values
 function initPotentialGrid(grid) {
-  electricalPotential = Array.from({ length: grid.length }, () =>
-    Array(grid[0].length).fill(0)
-  );
+  setInterval(() => {
+    electricalPotential = Array.from({ length: grid.length }, () =>
+      Array(grid[0].length).fill(0)
+    );
+  }, 1000);
 }
 
 // Function to calculate electrical potential at each coordinate
 function calculateElectricalPotential() {
-  //we reset the electrical potential grid
-  initPotentialGrid(grid);
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       if (grid[i][j] === "battery") {
@@ -20,8 +20,6 @@ function calculateElectricalPotential() {
     }
   }
 }
-
-
 
 // Function to set the potential of neighboring tiles
 function setNeighboringPotential(i, j, potential) {
@@ -38,8 +36,6 @@ function setNeighboringPotential(i, j, potential) {
     }
   }
 }
-
-
 
 // Function to calculate electricity and update the main grid
 function calculateElectricity() {
@@ -81,16 +77,15 @@ function calculateElectricity() {
             }
           }
           break;
-          case "electrifiedWire":
-            if (electricalPotential[i][j] === 0) {
-              grid[i][j] = "wire";
-            }
-            break;
+        case "electrifiedWire":
+          if (electricalPotential[i][j] === 0) {
+            grid[i][j] = "wire";
+          }
+          break;
       }
     }
   }
 }
-
 
 // Check if coordinates are within the grid bounds
 function isInGridBounds(i, j) {
