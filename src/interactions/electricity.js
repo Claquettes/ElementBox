@@ -28,23 +28,24 @@ function calculateElectricalPotential() {
               electricalPotential[adjI][adjJ] > 1
             ) {
               count++;
-            }
-            else if (isInGridBounds(adjI, adjJ) && electricalPotential[adjI][adjJ] > 3){
-              count == 100;
+            } else if (
+              isInGridBounds(adjI, adjJ) &&
+              electricalPotential[adjI][adjJ] > 3
+            ) {
+              count == 100; //if there is a battery .
             }
           }
           if (count >= 2) {
             setNeighboringPotential(i, j, 2);
             grid[i][j] = "electrifiedWire";
-          }
-          else{
+          } else {
             setNeighboringPotential(i, j, 0);
             grid[i][j] = "wire";
           }
         }
       }
     }
-  }
+  } //The problem withh the code is that the wires needs to be doubled at the start, or the electricity will not be able to reach the end of the wire.
 }
 
 // Function to set the potential of neighboring tiles
