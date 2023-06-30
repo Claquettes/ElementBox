@@ -15,7 +15,33 @@ function calculateElectricalPotential() {
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       if (grid[i][j] === "battery") {
-        setNeighboringPotential(i, j, 4); // Set neighboring tiles' potential of 2
+        setNeighboringPotential(i, j, 4); // Set neighboring tiles' potential of 4
+      } else {
+        if (grid[i][j] === "electrifiedWire" || grid[i][j] === "wire") {
+          //THE WIRE IS ELECTRIFIED IF IT HAS A TILE WITH POTENTIAL > 3 AROUND IT, or 2 tile with a potential > 1 around it
+          const adjacentTiles = adjacent8Tiles(i, j, []);
+          let count = 0;
+          for (let k = 0; k < adjacentTiles.length; k++) {
+            const [adjI, adjJ] = adjacentTiles[k];
+            if (
+              isInGridBounds(adjI, adjJ) &&
+              electricalPotential[adjI][adjJ] > 1
+            ) {
+              count++;
+            }
+            else if (isInGridBounds(adjI, adjJ) && electricalPotential[adjI][adjJ] > 3){
+              count == 100;
+            }
+          }
+          if (count >= 2) {
+            setNeighboringPotential(i, j, 2);
+            grid[i][j] = "electrifiedWire";
+          }
+          else{
+            setNeighboringPotential(i, j, 0);
+            grid[i][j] = "wire";
+          }
+        }
       }
     }
   }
