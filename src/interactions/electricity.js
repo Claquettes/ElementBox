@@ -10,13 +10,12 @@ function initPotentialGrid(grid) {
 
 // Function to calculate electrical potential at each coordinate
 function calculateElectricalPotential() {
+  //we reset the electrical potential grid
+  initPotentialGrid(grid);
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       if (grid[i][j] === "battery") {
         setNeighboringPotential(i, j, 4); // Set neighboring tiles' potential of 2
-      }
-      if(grid[i][j] === "electrifiedWire"){
-        setNeighboringPotential(i, j, 2);
       }
     }
   }
@@ -82,6 +81,11 @@ function calculateElectricity() {
             }
           }
           break;
+          case "electrifiedWire":
+            if (electricalPotential[i][j] === 0) {
+              grid[i][j] = "wire";
+            }
+            break;
       }
     }
   }
@@ -108,10 +112,6 @@ function adjacent8Tiles(i, j, result) {
   }
   return result;
 }
-
-setInterval(() => {
-  console.log(electricalPotential);
-}, 5000);
 
 function returnPotentialGrid() {
   return electricalPotential;
