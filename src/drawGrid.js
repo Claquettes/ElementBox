@@ -1,4 +1,6 @@
-function drawGrid() {
+function drawGrid(view) {
+  let electricalGrid = returnPotentialGrid();
+  if(view === "grid"){
   let specialrender = false;
   ctx.clearRect(0, 0, canvasSize, canvasSize);
   for (let i = 0; i < numRows; i++) {
@@ -109,6 +111,18 @@ function drawGrid() {
           ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
         }
         specialrender = false;
+      }
+    }
+  }
+}
+  else {
+    //we render the grid with the value in the electrical grid
+    ctx.fillStyle = "yellow";
+    for(let i = 0; i < numRows; i++){
+      for(let j = 0; j < numCols; j++){
+        if(electricalGrid[i][j] !== 0){
+          ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+        }
       }
     }
   }

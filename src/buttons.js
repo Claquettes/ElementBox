@@ -26,6 +26,7 @@ const ledButton = document.getElementById("ledButton");
 const oilButton = document.getElementById("oilButton");
 const ANDGateButton = document.getElementById("ANDGateButton");
 const nuclearBombButton = document.getElementById("nuclearBombButton");
+const changeViewToPotentialButton = document.getElementById("changeViewToPotentialButton");
 
 
 redButton.addEventListener("click", () => setCurrentColor("red"));
@@ -63,3 +64,4 @@ oilButton.addEventListener("click", () => setCurrentColor("oil"));
 changeSizeButton.addEventListener("click", () => changeSize());
 ANDGateButton.addEventListener("click", () => setCurrentColor("ANDGate"));
 nuclearBombButton.addEventListener("click", () => setCurrentColor("nuclearBomb"));
+changeViewToPotentialButton.addEventListener("click", () => changeViewTo("potential"));
