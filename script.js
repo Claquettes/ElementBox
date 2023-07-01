@@ -19,9 +19,15 @@ const numRows = Math.ceil(canvasSize / gridSize);
 
 //used to switch between the different views
 let view = "grid";
-function changeViewTo(type){
-  view = type;
-  console.log("view changed to " + type);
+
+function changeView(){
+  console.log("changing view");
+  if(view === "grid"){
+    view = "electrical";
+  }
+  else{
+    view = "grid";
+  }
 }
 
 const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color

@@ -37,7 +37,20 @@ function calculateElectricalPotential() {
           }
           if (count >= 1) {
             setNeighboringPotential(i, j, 2);
-            grid[i][j] = "electrifiedWire";
+            switch (grid[i][j]) {
+              case "wire":
+                grid[i][j] = "electrifiedWire";
+                break;
+              case "water":
+                grid[i][j] = "electrifiedWater";
+                break;
+              case "led":
+                grid[i][j] = "electrifiedLed";
+                break;
+              case "generator":
+                grid[i][j] = "electrifiedGenerator";
+                break;
+            }
           } else {
             setNeighboringPotential(i, j, 0);
             grid[i][j] = "wire";
@@ -91,24 +104,33 @@ function calculateElectricity() {
           }
           break;
         case "led":
-          const adjacentTiles = adjacent8Tiles(i, j, []);
-          for (let k = 0; k < adjacentTiles.length; k++) {
-            const [adjI, adjJ] = adjacentTiles[k];
-            if (
-              isInGridBounds(adjI, adjJ) &&
-              grid[adjI][adjJ] === "battery" &&
-              electricalPotential[adjI][adjJ] > 0
-            ) {
-              grid[i][j] = "electrifiedLed";
-              break;
-            }
+          if (electricalPotential[i][j] > 0) {
+            grid[i][j] = "electrifiedLed";
+          } else {
+            grid[i][j] = "led";
           }
           break;
+          //Go back to neutral state if the potential is 0
         case "electrifiedWire":
           if (electricalPotential[i][j] === 0) {
             grid[i][j] = "wire";
           }
           break;
+        case "electrifiedWater":
+          if (electricalPotential[i][j] === 0) {
+            grid[i][j] = "water";
+          }
+          break;
+        case "electrifiedGenerator":
+          if (electricalPotential[i][j] === 0) {
+            grid[i][j] = "generator";
+          }
+          break;
+          case "electrifiedLed":
+            if (electricalPotential[i][j] === 0) {
+              grid[i][j] = "led";
+            }
+            break;
       }
     }
   }
