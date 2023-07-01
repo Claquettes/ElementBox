@@ -80,7 +80,6 @@ function setNeighboringPotential(i, j, potential) {
 // Function to calculate electricity and update the main grid
 function calculateElectricity() {
   calculateElectricalPotential();
-
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       switch (grid[i][j]) {

@@ -3,13 +3,9 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 const canvasSize = 1000;
+let particleSize = 33;
 
-let gridSize = canvasSize / 33;
-
-function changeSize(){
-  gridSize = canvasSize / document.getElementById("gridSizeInput").value; 
-  console.log(gridSize);
-}
+let gridSize = canvasSize / particleSize;
 
 canvas.width = canvasSize;
 canvas.height = canvasSize;
@@ -20,12 +16,11 @@ const numRows = Math.ceil(canvasSize / gridSize);
 //used to switch between the different views
 let view = "grid";
 
-function changeView(){
+function changeView() {
   console.log("changing view");
-  if(view === "grid"){
+  if (view === "grid") {
     view = "electrical";
-  }
-  else{
+  } else {
     view = "grid";
   }
 }
@@ -33,12 +28,26 @@ function changeView(){
 const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
 const liquids = ["water", "lava", "acid", "electrifiedWater", "oil"]; // Added 'electrifiedWater' liquid
 const solids = ["stone", "grey", "ice"];
-const electronics = ["generator", "battery", "wire", "electrifiedWire", "led", "electrifiedLed", "ANDGate"]; // Added 'led' electronic
+const electronics = [
+  "generator",
+  "battery",
+  "wire",
+  "electrifiedWire",
+  "led",
+  "electrifiedLed",
+  "ANDGate",
+]; // Added 'led' electronic
 const explosives = ["tnt", "dynamite", "c4", "gunpowder", "oil", "nuclearBomb"];
 const gases = ["steam", "smoke"];
-const ignitionSources = ["fire", "lava", "battery", "electrifiedWire"]; 
+const ignitionSources = ["fire", "lava", "battery", "electrifiedWire"];
 const notAffectedByGravity = ["fire"];
-const electrifiedTiles = ["electrifiedWater", "electrifiedWire", "electrifiedLed", "battery", "electrifiedGenerator"]; // Added 'electrifiedLed' tile
+const electrifiedTiles = [
+  "electrifiedWater",
+  "electrifiedWire",
+  "electrifiedLed",
+  "battery",
+  "electrifiedGenerator",
+]; // Added 'electrifiedLed' tile
 
 // Initialize grid
 const grid = [];
@@ -125,7 +134,7 @@ function applyGravity() {
           tileType = grid[i][j];
           liquidInteraction(i, j, tileType);
         }
-        
+
         //if a sand tile is ON TOP of a liquid tile
         if (grid[i][j] === "sand" && liquids.includes(grid[i + 1][j])) {
           sandInteraction(i, j);
@@ -150,11 +159,9 @@ function applyGravity() {
         if (grid[i][j] === "fire") {
           fireInteraction(i, j);
         }
-        if(grid[i][j] === "ANDGate"){
+        if (grid[i][j] === "ANDGate") {
           ANDGateInteraction(i, j);
         }
-
-        calculateElectricity(i, j);
       }
     }
   }
@@ -176,3 +183,25 @@ function update() {
 }
 
 update();
+
+setInterval(function () {
+  calculateElectricity();
+}, 1000);
+
+function downScale() {
+  if (particleSize < 95) {
+    particleSize = particleSize + 5;
+  }
+  recalculateGridSize();
+}
+
+function upScale() {
+  if (particleSize > 6) {
+    particleSize = particleSize - 5;
+  }
+  recalculateGridSize();
+}
+
+function recalculateGridSize() {
+  gridSize = canvasSize / particleSize;
+}
