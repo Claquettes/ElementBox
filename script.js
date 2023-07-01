@@ -153,8 +153,6 @@ function applyGravity() {
         if(grid[i][j] === "ANDGate"){
           ANDGateInteraction(i, j);
         }
-
-        calculateElectricity(i, j);
       }
     }
   }
@@ -176,3 +174,7 @@ function update() {
 }
 
 update();
+
+setInterval(function () {
+  calculateElectricity();
+}, 1000);
