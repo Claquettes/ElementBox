@@ -29,4 +29,12 @@ const oilColor = "#19300e";
 const electrifiedWaterColor = "#619eff";
 const electrifiedWireColor = "#ff9442";
 const electrifiedGeneratorColor = "#e882e6";
-const electrifiedLedColor = "#00ff00";
+const electrifiedLedColor = "#ff0000";
+
+//Colors for potentials
+const potentialValue1Color = "#a1f542";
+const potentialValue2Color = "#e6f542";
+const potentialValue3Color = "#f5d442";
+const potentialValue4Color = "#f5ad42";
+const potentialValue5Color = "#f58742";
+

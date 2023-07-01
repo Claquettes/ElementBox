@@ -1,115 +1,146 @@
-function drawGrid() {
-  let specialrender = false;
-  ctx.clearRect(0, 0, canvasSize, canvasSize);
-  for (let i = 0; i < numRows; i++) {
-    for (let j = 0; j < numCols; j++) {
-      const color = grid[i][j];
-      if (color !== "") {
-        //if the tile is not empty
-        switch (color) {
-          case "red":
-            ctx.fillStyle = redColor;
-            break;
-          case "green":
-            ctx.fillStyle = greenColor;
-            break;
-          case "water":
-            //we put the hex code of the color
-            ctx.fillStyle = waterColor;
-            break;
-          case "grey":
-            ctx.fillStyle = greyColor;
-            break;
-          case "sand":
-            ctx.fillStyle = sandColor;
-            break;
-          case "coal":
-            ctx.fillStyle = coalColor;
-            break;
-          case "lava":
-            ctx.fillStyle = lavaColor;
-            break;
-          case "stone":
-            ctx.fillStyle = stoneColor;
-            break;
-          case "freezePowder":
-            ctx.fillStyle = freezePowderColor;
-            break;
-          case "ice":
-            ctx.fillStyle = iceColor;
-            break;
-          case "steam":
-            ctx.fillStyle = steamColor;
-            break;
-          case "acid":
-            ctx.fillStyle = acidColor;
-            break;
-          case "generator":
-            ctx.fillStyle = generatorColor;
-            break;
-          case "battery":
-            ctx.fillStyle = batteryColor;
-            break;
-          case "wire":
-            ctx.fillStyle = wireColor;
-            break;
-          case "electrifiedWater":
-            ctx.fillStyle = electrifiedWaterColor;
-            break;
-          case "electrifiedWire":
-            ctx.fillStyle = electrifiedWireColor;
-            break;
-          case "electrifiedGenerator":
-            ctx.fillStyle = electrifiedGeneratorColor;
-            break;
-          case "tnt":
-            ctx.fillStyle = tntColor;
-            break;
-          case "c4":
-            ctx.fillStyle = c4Color;
-            break;
-          case "smoke":
-            ctx.fillStyle = smokeColor;
-            break;
-          case "dynamite":
-            renderDynamite(i, j);
-            specialrender = true;
-            break;
-          case "gunpowder":
-            renderGunPowder(i, j);
-            specialrender = true;
-            break;
-          case "fire":
-            renderFire(i, j);
-            specialrender = true;
-            break;
-          case "led":
-            ctx.fillStyle = ledColor;
-            break;
-          case "electrifiedLed":
-            ctx.fillStyle = electrifiedLedColor;
-            break;
-          case "oil":
-            ctx.fillStyle = oilColor;
-            break;
-          case "ANDGate":
-            renderAND(i, j);
-            specialrender = true;
-            break;
-          case "electrifiedANDGate":
-            renderAND(i, j);
-            specialrender = true;
-            break;
-          case "nuclearBomb":
-            ctx.fillStyle = nuclearBombColor;
-            break;
-        
+function drawGrid(view) {
+  let electricalGrid = returnPotentialGrid();
+  if (view === "grid") {
+    let specialrender = false;
+    ctx.clearRect(0, 0, canvasSize, canvasSize);
+    for (let i = 0; i < numRows; i++) {
+      for (let j = 0; j < numCols; j++) {
+        const color = grid[i][j];
+        if (color !== "") {
+          //if the tile is not empty
+          switch (color) {
+            case "red":
+              ctx.fillStyle = redColor;
+              break;
+            case "green":
+              ctx.fillStyle = greenColor;
+              break;
+            case "water":
+              //we put the hex code of the color
+              ctx.fillStyle = waterColor;
+              break;
+            case "grey":
+              ctx.fillStyle = greyColor;
+              break;
+            case "sand":
+              ctx.fillStyle = sandColor;
+              break;
+            case "coal":
+              ctx.fillStyle = coalColor;
+              break;
+            case "lava":
+              ctx.fillStyle = lavaColor;
+              break;
+            case "stone":
+              ctx.fillStyle = stoneColor;
+              break;
+            case "freezePowder":
+              ctx.fillStyle = freezePowderColor;
+              break;
+            case "ice":
+              ctx.fillStyle = iceColor;
+              break;
+            case "steam":
+              ctx.fillStyle = steamColor;
+              break;
+            case "acid":
+              ctx.fillStyle = acidColor;
+              break;
+            case "generator":
+              ctx.fillStyle = generatorColor;
+              break;
+            case "battery":
+              ctx.fillStyle = batteryColor;
+              break;
+            case "wire":
+              ctx.fillStyle = wireColor;
+              break;
+            case "electrifiedWater":
+              ctx.fillStyle = electrifiedWaterColor;
+              break;
+            case "electrifiedWire":
+              ctx.fillStyle = electrifiedWireColor;
+              break;
+            case "electrifiedGenerator":
+              ctx.fillStyle = electrifiedGeneratorColor;
+              break;
+            case "tnt":
+              ctx.fillStyle = tntColor;
+              break;
+            case "c4":
+              ctx.fillStyle = c4Color;
+              break;
+            case "smoke":
+              ctx.fillStyle = smokeColor;
+              break;
+            case "dynamite":
+              renderDynamite(i, j);
+              specialrender = true;
+              break;
+            case "gunpowder":
+              renderGunPowder(i, j);
+              specialrender = true;
+              break;
+            case "fire":
+              renderFire(i, j);
+              specialrender = true;
+              break;
+            case "led":
+              ctx.fillStyle = ledColor;
+              break;
+            case "electrifiedLed":
+              ctx.fillStyle = electrifiedLedColor;
+              break;
+            case "oil":
+              ctx.fillStyle = oilColor;
+              break;
+            case "ANDGate":
+              renderAND(i, j);
+              specialrender = true;
+              break;
+            case "electrifiedANDGate":
+              renderAND(i, j);
+              specialrender = true;
+              break;
+            case "nuclearBomb":
+              ctx.fillStyle = nuclearBombColor;
+              break;
+          }
+          if (!specialrender) {
+            ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
+          }
+          specialrender = false;
         }
-        if (!specialrender) {
-          ctx.fillRect(j * gridSize, i * gridSize, gridSize, gridSize);
-        }
-        specialrender = false;
       }
+    }
+  } else if (view === "electrical") {
+    //we render the grid with the value in the electrical grid
+
+    for (let i = 0; i < numRows; i++) {
+      for (let j = 0; j < numCols; j++) {
+        if(electricalGrid[i][j] !== 0) {
+        switch (electricalGrid[i][j]) {
+          case 1:
+            ctx.fillStyle = 'green';
+            break;
+          case 2:
+            ctx.fillStyle = 'yellow';
+            break;
+          case 3:
+            ctx.fillStyle = 'orange';
+            break;
+          case 4:
+            ctx.fillStyle = 'red';
+            break;
+        }
+
+        ctx.fillRect(
+          j * gridSize,
+          i * gridSize,
+          gridSize,
+          gridSize);
+      }
+    }
     }
   }
 }

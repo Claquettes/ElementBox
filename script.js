@@ -17,6 +17,19 @@ canvas.height = canvasSize;
 const numCols = Math.ceil(canvasSize / gridSize);
 const numRows = Math.ceil(canvasSize / gridSize);
 
+//used to switch between the different views
+let view = "grid";
+
+function changeView(){
+  console.log("changing view");
+  if(view === "grid"){
+    view = "electrical";
+  }
+  else{
+    view = "grid";
+  }
+}
+
 const colors = ["red", "green", "water", "grey", "sand"]; // Added 'grey' color
 const liquids = ["water", "lava", "acid", "electrifiedWater", "oil"]; // Added 'electrifiedWater' liquid
 const solids = ["stone", "grey", "ice"];
@@ -36,6 +49,8 @@ for (let i = 0; i < numRows; i++) {
   }
   grid.push(row);
 }
+
+initPotentialGrid(grid);
 
 // Mouse variables
 let isMouseDown = false;
@@ -156,7 +171,7 @@ function setCurrentColor(color) {
 
 function update() {
   applyGravity();
-  drawGrid();
+  drawGrid(view);
   requestAnimationFrame(update);
 }
 

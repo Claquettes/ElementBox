@@ -26,6 +26,7 @@ const ledButton = document.getElementById("ledButton");
 const oilButton = document.getElementById("oilButton");
 const ANDGateButton = document.getElementById("ANDGateButton");
 const nuclearBombButton = document.getElementById("nuclearBombButton");
+const changeViewButton = document.getElementById("changeViewButton");
 
 
 redButton.addEventListener("click", () => setCurrentColor("red"));
@@ -51,7 +52,7 @@ clearButton.addEventListener("click", () => {
   for (let i = 0; i < grid.length; i++) {
     grid[i].fill("");
   }
-  draw();
+  drawGrid();
 });
 dynamiteButton.addEventListener("click", () => setCurrentColor("dynamite"));
 c4Button.addEventListener("click", () => setCurrentColor("c4"));
@@ -63,3 +64,4 @@ oilButton.addEventListener("click", () => setCurrentColor("oil"));
 changeSizeButton.addEventListener("click", () => changeSize());
 ANDGateButton.addEventListener("click", () => setCurrentColor("ANDGate"));
 nuclearBombButton.addEventListener("click", () => setCurrentColor("nuclearBomb"));
+changeViewButton.addEventListener("click", () => changeView());
