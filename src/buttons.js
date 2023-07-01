@@ -1,4 +1,3 @@
-const changeSizeButton = document.getElementById("changeSizeButton");
 const redButton = document.getElementById("redButton");
 const greenButton = document.getElementById("greenButton");
 const waterButton = document.getElementById("waterButton");
@@ -27,6 +26,8 @@ const oilButton = document.getElementById("oilButton");
 const ANDGateButton = document.getElementById("ANDGateButton");
 const nuclearBombButton = document.getElementById("nuclearBombButton");
 const changeViewButton = document.getElementById("changeViewButton");
+const downScaleButton = document.getElementById("downScaleButton");
+const upScaleButton = document.getElementById("upScaleButton");
 
 
 redButton.addEventListener("click", () => setCurrentColor("red"));
@@ -61,7 +62,9 @@ gunpowderButton.addEventListener("click", () => setCurrentColor("gunpowder"));
 fireButton.addEventListener("click", () => setCurrentColor("fire"));
 ledButton.addEventListener("click", () => setCurrentColor("led"));
 oilButton.addEventListener("click", () => setCurrentColor("oil"));
-changeSizeButton.addEventListener("click", () => changeSize());
 ANDGateButton.addEventListener("click", () => setCurrentColor("ANDGate"));
 nuclearBombButton.addEventListener("click", () => setCurrentColor("nuclearBomb"));
 changeViewButton.addEventListener("click", () => changeView());
+downScaleButton.addEventListener("click", () => downScale());
+upScaleButton.addEventListener("click", () => upScale());
+
