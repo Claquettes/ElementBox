@@ -35,7 +35,7 @@ function calculateElectricalPotential() {
               count == 100; //if there is a battery .
             }
           }
-          if (count >= 2) {
+          if (count >= 1) {
             setNeighboringPotential(i, j, 2);
             grid[i][j] = "electrifiedWire";
           } else {
