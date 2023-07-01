@@ -37,6 +37,10 @@ const electronics = [
   "led",
   "electrifiedLed",
   "ANDGate",
+  "ORGate",
+  "NOTGate",
+  "XORGate",
+  "NANDGate",
 ]; // Added 'led' electronic
 const explosives = ["tnt", "dynamite", "c4", "gunpowder", "oil", "nuclearBomb"];
 const gases = ["steam", "smoke"];
