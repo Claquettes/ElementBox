@@ -28,6 +28,10 @@ const nuclearBombButton = document.getElementById("nuclearBombButton");
 const changeViewButton = document.getElementById("changeViewButton");
 const downScaleButton = document.getElementById("downScaleButton");
 const upScaleButton = document.getElementById("upScaleButton");
+const NOTGateButton = document.getElementById("NOTGateButton");
+const ORGateButton = document.getElementById("ORGateButton");
+const XORGateButton = document.getElementById("XORGateButton");
+const NANDGateButton = document.getElementById("NANDGateButton");
 
 
 redButton.addEventListener("click", () => setCurrentColor("red"));
@@ -67,4 +71,8 @@ nuclearBombButton.addEventListener("click", () => setCurrentColor("nuclearBomb")
 changeViewButton.addEventListener("click", () => changeView());
 downScaleButton.addEventListener("click", () => downScale());
 upScaleButton.addEventListener("click", () => upScale());
+NOTGateButton.addEventListener("click", () => setCurrentColor("NOTGate"));
+ORGateButton.addEventListener("click", () => setCurrentColor("ORGate"));
+XORGateButton.addEventListener("click", () => setCurrentColor("XORGate"));
+NANDGateButton.addEventListener("click", () => setCurrentColor("NANDGate"));
 
