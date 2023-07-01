@@ -30,6 +30,7 @@ const liquids = ["water", "lava", "acid", "electrifiedWater", "oil"]; // Added '
 const solids = ["stone", "grey", "ice"];
 const electronics = [
   "generator",
+  "electrifiedGenerator", // Added 'electrifiedGenerator' electronic
   "battery",
   "wire",
   "electrifiedWire",
