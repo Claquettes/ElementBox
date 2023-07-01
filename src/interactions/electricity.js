@@ -15,7 +15,7 @@ function calculateElectricalPotential() {
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
       if (grid[i][j] === "battery") {
-        setNeighboringPotential(i, j, 4); // Set neighboring tiles' potential of 4
+        setNeighboringPotential(i, j, 2); // Set neighboring tiles' potential of 2
       } else {
         if (grid[i][j] === "electrifiedWire" || grid[i][j] === "wire") {
           //THE WIRE IS ELECTRIFIED IF IT HAS A TILE WITH POTENTIAL > 3 AROUND IT, or 2 tile with a potential > 1 around it
@@ -30,7 +30,7 @@ function calculateElectricalPotential() {
               count++;
             } else if (
               isInGridBounds(adjI, adjJ) &&
-              electricalPotential[adjI][adjJ] > 3
+              electricalPotential[adjI][adjJ] >= 2
             ) {
               count == 100; //if there is a battery .
             }
