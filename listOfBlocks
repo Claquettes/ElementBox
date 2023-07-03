@@ -8,7 +8,7 @@ Tiles:
 	Stone:
 		Can stop ACID.
 	Ice:
-		Will turn WATER or STEAM jjjjinto ICE.
+		Will turn WATER or STEAM into ICE.
 
 -Liquids:
 	The tiles in the liquids category are affected by gravity; and if two of them are stacked one on top of the other, the one on top will try to fall, to mimic physics. These tiles are (for most of them) not destroyable by explosives. You'll find below the specificities of each liquid tile.
